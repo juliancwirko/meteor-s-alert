@@ -1,0 +1,81 @@
+/* Common, default styles for the notification box */
+
+.s-alert-box {
+	position: fixed;
+	background: rgba(42,45,50,0.85);
+	padding: 22px;
+	line-height: 1.4;
+	z-index: 1000;
+	pointer-events: none;
+	color: rgba(250,251,255,0.95);
+	font-size: 90%;
+	font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+.s-alert-box.s-alert-show {
+	pointer-events: auto;
+}
+
+.s-alert-box a {
+	color: inherit;
+	opacity: 0.7;
+	font-weight: 700;
+}
+
+.s-alert-box a:hover,
+.s-alert-box a:focus {
+	opacity: 1;
+}
+
+.s-alert-box p {
+	margin: 0;
+}
+
+.s-alert-box.s-alert-show,
+.s-alert-box.s-alert-visible {
+	pointer-events: auto;
+}
+
+.s-alert-close {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 4px;
+	top: 4px;
+	overflow: hidden;
+	text-indent: 100%;
+	cursor: pointer;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.s-alert-close:hover, 
+.s-alert-close:focus {
+	outline: none;
+}
+
+.s-alert-close::before,
+.s-alert-close::after {
+	content: '';
+	position: absolute;
+	width: 3px;
+	height: 60%;
+	top: 50%;
+	left: 50%;
+	background: #fff;
+}
+
+.s-alert-close:hover::before,
+.s-alert-close:hover::after {
+	background: #fff;
+}
+
+.s-alert-close::before {
+	-webkit-transform: translate(-50%,-50%) rotate(45deg);
+	transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.s-alert-close::after {
+	-webkit-transform: translate(-50%,-50%) rotate(-45deg);
+	transform: translate(-50%,-50%) rotate(-45deg);
+}

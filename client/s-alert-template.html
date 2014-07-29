@@ -1,0 +1,14 @@
+<template name="sAlert">
+    {{#with sAlertData}}
+        {{> sAlertContent}}
+    {{/with}}
+</template>
+
+<template name="sAlertContent">
+    <div class="s-alert-box s-alert-{{type}} s-alert-effect-{{effect}} s-alert-error s-alert-{{condition}} s-alert-show" data-timeout="{{timeout}}">
+        <div class="s-alert-box-inner">
+            <p>{{message}}</p>
+        </div>
+        <span class="s-alert-close"></span>
+    </div>
+</template>

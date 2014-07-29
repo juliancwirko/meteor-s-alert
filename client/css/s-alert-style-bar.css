@@ -1,0 +1,223 @@
+/* To bar notifications */
+.s-alert-box.s-alert-bar {
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.s-alert-bar .s-alert-close {
+	background: transparent;
+	top: 50%;
+	right: 20px;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.s-alert-bar .s-alert-close::before,
+.s-alert-bar .s-alert-close::after {
+	background: #fff;
+}
+
+[class^="s-alert-effect-"].s-alert-bar.s-alert-hide,
+[class*=" s-alert-effect-"].s-alert-bar.s-alert-hide {
+	-webkit-animation-direction: reverse;
+	animation-direction: reverse;
+}
+
+/* Individual Effects */
+
+/* Slide on top */
+
+.s-alert-effect-slidetop.s-alert-blue {
+	background: #00A2D3;
+}
+.s-alert-effect-slidetop.s-alert-green {
+	background: #27AE60;
+}
+.s-alert-effect-slidetop.s-alert-yellow {
+	background: #F1C40F;
+}
+.s-alert-effect-slidetop.s-alert-red {
+	background: #E74C3C;
+}
+
+.s-alert-effect-slidetop {
+	width: 100%;
+}
+
+.s-alert-effect-slidetop p {
+	padding: 0 3.2em;
+	font-size: 1.2em;
+	display: inline-block;
+}
+
+.s-alert-effect-slidetop .s-alert-close::before,
+.s-alert-effect-slidetop .s-alert-close::after {
+	width: 2px;
+	background: #fff;
+}
+
+.s-alert-effect-slidetop .s-alert-close:hover::before,
+.s-alert-effect-slidetop .s-alert-close:hover::after {
+	background: #fff;
+}
+
+.s-alert-effect-slidetop.s-alert-show .icon,
+.s-alert-effect-slidetop.s-alert-show p {
+	-webkit-animation-name: animScaleUp;
+	animation-name: animScaleUp;
+	-webkit-animation-duration: 0.3s;
+	animation-duration: 0.3s;
+	-webkit-animation-delay: 0.2s;
+	animation-delay: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+.s-alert-effect-slidetop.s-alert-show p {
+	-webkit-animation-name: animFade;
+	animation-name: animFade;
+}
+
+@-webkit-keyframes animScaleUp {
+	0% { opacity: 0; -webkit-transform: translate3d(0,-50%,0) scale3d(0,0,1); }
+	100% { opacity: 1; -webkit-transform: translate3d(0,-50%,0) scale3d(1,1,1); }
+}
+
+@keyframes animScaleUp {
+	0% { opacity: 0; -webkit-transform: translate3d(0,-50%,0) scale3d(0,0,1); transform: translate3d(0,-50%,0) scale3d(0,0,1); }
+	100% { opacity: 1; -webkit-transform: translate3d(0,-50%,0) scale3d(1,1,1); transform: translate3d(0,-50%,0) scale3d(1,1,1); }
+}
+
+.s-alert-effect-slidetop.s-alert-show,
+.s-alert-effect-slidetop.s-alert-hide {
+	-webkit-animation-name: animSlideTop;
+	animation-name: animSlideTop;
+	-webkit-animation-duration: 0.3s;
+	animation-duration: 0.3s;
+}
+
+@-webkit-keyframes animSlideTop {
+	0% { -webkit-transform: translate3d(0,-100%,0); }
+	100% { -webkit-transform: translate3d(0,0,0); }
+}
+
+@keyframes animSlideTop {
+	0% { -webkit-transform: translate3d(0,-100%,0); transform: translate3d(0,-100%,0); }
+	100% { -webkit-transform: translate3d(0,0,0); transform: translate3d(0,0,0); }
+}
+
+/* Expanding Loader */
+
+.s-alert-effect-exploader.s-alert-blue {
+	background: #00A2D3;
+}
+.s-alert-effect-exploader.s-alert-green {
+	background: #27AE60;
+}
+.s-alert-effect-exploader.s-alert-yellow {
+	background: #F1C40F;
+}
+.s-alert-effect-exploader.s-alert-red {
+	background: #E74C3C;
+}
+
+.s-alert-effect-exploader {
+	width: 100%;
+	color: #fff;
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+.s-alert-effect-exploader .icon {
+	position: absolute;
+	left: 0.25em;
+	top: 50%;
+	-webkit-transform: translate3d(0,-50%,0);
+	transform: translate3d(0,-50%,0);
+}
+
+.s-alert-effect-exploader .s-alert-box-inner {
+	position: relative;
+}
+
+.s-alert-effect-exploader p {
+	padding: 0.25em 2em 0.25em 3em;
+}
+
+.s-alert-effect-exploader .s-alert-close:hover::before,
+.s-alert-effect-exploader .s-alert-close:hover::after {
+	background: #fff;
+}
+
+.s-alert-effect-exploader.s-alert-show {
+	-webkit-animation-name: animLoad;
+	animation-name: animLoad;
+	-webkit-animation-duration: 2.5s;
+	animation-duration: 2.5s;
+}
+
+@-webkit-keyframes animLoad {
+	0% { opacity: 1; -webkit-transform: scale3d(0,0.3,1); }
+	33% { opacity: 1; -webkit-transform: scale3d(0.5,0.3,1); }
+	50% { opacity: 1; -webkit-transform: scale3d(0.6,0.3,1); }
+	80%, 85% { opacity: 1; -webkit-transform: scale3d(1,0.3,1); -webkit-animation-timing-function: cubic-bezier(0.7,0,0.3,1); }
+	100% { opacity: 1; -webkit-transform: scale3d(1,1,1); }
+}
+
+@keyframes animLoad {
+	0% { opacity: 1; -webkit-transform: scale3d(0,0.3,1); transform: scale3d(0,0.3,1); }
+	33% { opacity: 1; -webkit-transform: scale3d(0.5,0.3,1); transform: scale3d(0.5,0.3,1); }
+	50% { opacity: 1; -webkit-transform: scale3d(0.6,0.3,1); transform: scale3d(0.6,0.3,1); }
+	80%, 85% { opacity: 1; -webkit-transform: scale3d(1,0.3,1); transform: scale3d(1,0.3,1); -webkit-animation-timing-function: cubic-bezier(0.7,0,0.3,1); animation-timing-function: cubic-bezier(0.7,0,0.3,1); }
+	100% { opacity: 1; -webkit-transform: scale3d(1,1,1); transform: scale3d(1,1,1); }
+}
+
+.s-alert-effect-exploader.s-alert-hide {
+	-webkit-animation-name: animFade;
+	animation-name: animFade;
+	-webkit-animation-duration: 0.3s;
+	animation-duration: 0.3s;
+}
+
+.s-alert-effect-exploader.s-alert-show .s-alert-box-inner,
+.s-alert-effect-exploader.s-alert-show .s-alert-close {
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-duration: 0.3s;
+	animation-duration: 0.3s;
+	-webkit-animation-delay: 2.4s;
+	animation-delay: 2.4s;
+}
+
+.s-alert-effect-exploader.s-alert-show .s-alert-close {
+	-webkit-animation-name: animFade;
+	animation-name: animFade;	
+}
+
+.s-alert-effect-exploader.s-alert-show .s-alert-box-inner {
+	-webkit-animation-name: animFadeMove;
+	animation-name: animFadeMove;
+	-webkit-animation-timing-function: ease-out; 
+	animation-timing-function: ease-out;
+}
+
+@-webkit-keyframes animFadeMove {
+	0% { opacity: 0; -webkit-transform: translate3d(0,10px,0); }
+	100% { opacity: 1; -webkit-transform: translate3d(0,0,0); }
+}
+
+@keyframes animFadeMove {
+	0% { opacity: 0; -webkit-transform: translate3d(0,10px,0); transform: translate3d(0,10px,0); }
+	100% { opacity: 1; -webkit-transform: translate3d(0,0,0); transform: translate3d(0,0,0); }
+}
+
+@-webkit-keyframes animFade {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes animFade {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}

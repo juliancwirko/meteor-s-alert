@@ -9,9 +9,7 @@ Package.on_use(function(api) {
     api.use(['jquery'], ['client']);
     api.add_files([
         'client/css/s-alert-default.css',
-        'client/css/s-alert-style-attached.css',
-        'client/css/s-alert-style-bar.css',
-        'client/css/s-alert-style-growl.css'
+        'client/css/s-alert-effects.css'
     ], 'client');
     api.add_files(['client/s-alert-template.html', 'client/s-alert-template.js'], 'client');
 });

@@ -8,8 +8,9 @@
 	z-index: 1000;
 	pointer-events: none;
 	color: rgba(250,251,255,0.95);
-	font-size: 90%;
+	font-size: 100%;
 	font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+	max-width: 300px;
 }
 
 .s-alert-box.s-alert-show {
@@ -78,4 +79,50 @@
 .s-alert-close::after {
 	-webkit-transform: translate(-50%,-50%) rotate(-45deg);
 	transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+/* positions */
+
+.s-alert-left-bottom {
+	top: auto;
+	right: auto;
+	bottom: 30px;
+	left: 30px;
+}
+.s-alert-left-top {
+	top: 30px;
+	right: auto;
+	bottom: auto;
+	left: 30px;
+}
+.s-alert-right-top {
+	top: 30px;
+	right: 30px;
+	bottom: auto;
+	left: auto;
+}
+.s-alert-right-bottom { /*default*/
+	top: auto;
+	right: 30px;
+	bottom: 30px;
+	left: auto;
+}
+
+/* conditions */
+
+.s-alert-blue {
+    background: #00A2D3;
+    color: #fff;
+}
+.s-alert-green {
+    background: #27AE60;
+    color: #fff;
+}
+.s-alert-yellow {
+    background: #F1C40F;
+    color: #fff;
+}
+.s-alert-red {
+    background: #E74C3C;
+    color: #fff;
 }

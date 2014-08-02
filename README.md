@@ -1,6 +1,7 @@
-### Simple and fancy notifications for Meteor (especially for [Scotty](https://github.com/juliancwirko/scotty) boilerplate) (in progress...)
+### Simple and fancy notifications for Meteor (especially for [Scotty](https://github.com/juliancwirko/scotty) boilerplate)
+#### (in progress... for now only session variable configuration)
 
-CSS based on : [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
+inspiration: [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
 
 ### Demo
 
@@ -17,29 +18,37 @@ Just place ````{{> sAlert}}```` in your main template. Recomended usage:
 
 #### Use session variable to set up alert type and message, examples:
 
-Default config (condition: 'green', type: 'growl', effect: 'genie', timeout: 12000) 
+##### Default config (condition: 'green', effect: 'genie', position: 'right-bottom', timeout: 12000) 
 ````
 Session.set('sAlert', {message: 'Mission accomplished!'});
 ````
-With changed condition, type and effect:
+
+#####Full config:
 ````
-Session.set('sAlert', {condition: 'yellow', type: 'attached', effect: 'flip', message: 'Unknown vessel spotted!'});
+Session.set('sAlert', {condition: 'blue', effect: 'scale', message: 'Unknown vessel spotted!', position: 'right-top', timeout: 5000});
 ````
-With only condition changed:
+
+##### With changed condition, type and effect:
+````
+Session.set('sAlert', {condition: 'yellow', effect: 'flip', message: 'Unknown vessel spotted!'});
+````
+
+##### With only condition changed:
 ````
 Session.set('sAlert', {condition: 'red', message: 'Prepare for combat!'});
 ````
-Clear/Close alert:
+
+##### Clear/Close alert:
 ````
 Session.set('sAlert', null);
 ````
-You can set a timeout after which the Alert box will close itself. Just add a timeout param like:
-````
-Session.set('sAlert', {condition: 'red', type: 'attached', effect: 'bouncyflip', message: 'lorem ipsum dolor sit', timeout: 2000});
-````
-It is in milliseconds, default value is set to 12000 milliseconds (12 seconds). If you want do disable auto closing just set timeout to 'no' string ````timeout: 'no'````
 
-You should remember that if you don't match 'type' and 'effect' with each other then sAlert box will appear with standard config.
+##### You can set a timeout after which the Alert box will close itself. Just add a timeout param like:
+````
+Session.set('sAlert', {condition: 'red', effect: 'bouncyflip', message: 'lorem ipsum dolor sit', timeout: 2000});
+````
+
+It is in milliseconds, default value is set to 12000 milliseconds (12 seconds). If you want do disable auto closing just set timeout to 'no' string ````timeout: 'no'````
 
 ##### Avaible conditions:
 
@@ -48,25 +57,22 @@ You should remember that if you don't match 'type' and 'effect' with each other 
 - blue (similar to info)
 - green (similar to success)
 
-##### Avaible types:
+##### Avaible effects:
 
-- growl
-- attached
-- bar
+- scale
+- slide
+- genie
+- jelly
+- flip
+- bouncyflip
+- stackslide (right-top and left-top positions are the same here similar right-botton and left-bottom)
 
-##### Avaible effects for the specified type:
+##### Avaible positions:
 
-- for growl type:
-    - scale
-    - slide
-    - genie
-    - jelly
-- for attached type:
-    - flip
-    - bouncyflip
-- for bar type:
-    - slidetop
-    - exploader
+- left-top
+- left-bottom
+- right-top
+- right-bottom
 
 ### CSS styling
 
@@ -86,6 +92,7 @@ For example if you want to overwrite .s-alert-red in growl -> scale effect
 
 - gneral config and logic for sAlerts (this is important part)
 - clean css files
-- flatten effects combinations
+- <s>flatten effects combinations</s>
+- multiple alerts with collection
 - (if time permits..) more fancy styles
 - (if time permits..) for now SVG examples and all effects from 'other' type (from codrops example) are removed

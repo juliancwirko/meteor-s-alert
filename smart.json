@@ -3,6 +3,6 @@
   "description": "Simple and fancy notifications for Meteor. Especially for Scotty boilerplate.",
   "homepage": "https://github.com/EventedMind/blaze-layout",
   "author": "Julian Ćwirko (https://github.com/juliancwirko)",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "git": "https://github.com/juliancwirko/meteor-s-alert"
 }

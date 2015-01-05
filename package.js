@@ -1,6 +1,6 @@
 Package.describe({
-  "summary": "Simple and fancy notifications for Meteor. Especially for Scotty boilerplate.",
-  "version": "0.0.3",
+  "summary": "Simple and fancy notifications for Meteor.",
+  "version": "0.0.4",
   "git": "https://github.com/juliancwirko/meteor-s-alert.git",
   "name": "juliancwirko:s-alert"
 });

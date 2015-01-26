@@ -10,43 +10,43 @@ inspiration: [Codrops Article - Notification Styles Inspiration](http://tympanus
 ##### Usage
 
 Just place ````{{> sAlert}}```` in your main template. Recomended usage:
-````
-<body>
-    {{> sAlert}}
-</body>
-````
+
+    <body>
+        {{> sAlert}}
+    </body>
+
 
 #### Use session variable to set up alert type and message, examples:
 
-##### Default config (condition: 'green', effect: 'genie', position: 'right-bottom', timeout: 12000) 
-````
-Session.set('sAlert', {message: 'Mission accomplished!'});
-````
+##### Default config (condition: 'green', effect: 'genie', position: 'right-bottom', timeout: 12000)
+
+    Session.set('sAlert', {message: 'Mission accomplished!'});
+
 
 #####Full config:
-````
-Session.set('sAlert', {condition: 'blue', effect: 'scale', message: 'Unknown vessel spotted!', position: 'right-top', timeout: 5000});
-````
+
+    Session.set('sAlert', {condition: 'blue', effect: 'scale', message: 'Unknown vessel spotted!', position: 'right-top', timeout: 5000});
+
 
 ##### With changed condition, type and effect:
-````
-Session.set('sAlert', {condition: 'yellow', effect: 'flip', message: 'Unknown vessel spotted!'});
-````
+
+    Session.set('sAlert', {condition: 'yellow', effect: 'flip', message: 'Unknown vessel spotted!'});
+
 
 ##### With only condition changed:
-````
-Session.set('sAlert', {condition: 'red', message: 'Prepare for combat!'});
-````
+
+    Session.set('sAlert', {condition: 'red', message: 'Prepare for combat!'});
+
 
 ##### Clear/Close alert:
-````
-Session.set('sAlert', null);
-````
+
+    Session.set('sAlert', null);
+
 
 ##### You can set a timeout after which the Alert box will close itself. Just add a timeout param like:
-````
-Session.set('sAlert', {condition: 'red', effect: 'bouncyflip', message: 'lorem ipsum dolor sit', timeout: 2000});
-````
+
+    Session.set('sAlert', {condition: 'red', effect: 'bouncyflip', message: 'lorem ipsum dolor sit', timeout: 2000});
+
 
 It is in milliseconds, default value is set to 12000 milliseconds (12 seconds). If you want do disable auto closing just set timeout to 'no' string ````timeout: 'no'````
 
@@ -81,12 +81,12 @@ You can overwrite all css classes. Major classes which are defined by conditions
 ````.s-alert-blue, .s-alert-green, .s-alert-yellow, .s-alert-red````
 
 For example if you want to overwrite .s-alert-red in growl -> scale effect
-````
-.s-alert-effect-scale.s-alert-red {
-    background: #bada55; //your background color here
-    color: #fff //your text color here
-}
-````
+
+    .s-alert-effect-scale.s-alert-red {
+        background: #bada55; //your background color here
+        color: #fff //your text color here
+    }
+
 
 ### TODO
 

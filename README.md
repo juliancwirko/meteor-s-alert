@@ -1,5 +1,4 @@
-### Simple and fancy notifications for Meteor (especially for [Scotty](https://github.com/juliancwirko/scotty) boilerplate)
-#### (in progress... for now only session variable configuration)
+### Simple and fancy notifications for Meteor
 
 inspiration: [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
 
@@ -7,57 +6,72 @@ inspiration: [Codrops Article - Notification Styles Inspiration](http://tympanus
 
 [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
 
-##### Usage
+### Usage
 
-Just place ````{{> sAlert}}```` in your main template. Recomended usage:
+Add package:
+
+    meteor add juliancwirko:s-alert
+
+Then place ````{{> sAlert}}```` in your main template. Recomended usage:
 
     <body>
         {{> sAlert}}
     </body>
 
+#### sAlert configuration
 
-#### Use session variable to set up alert type and message, examples:
+You can set up your sAlert (client side). (More about possible configuration options below.) You can ommit it and you will have standard config which is the same as the one below:
 
-##### Default config (condition: 'green', effect: 'genie', position: 'right-bottom', timeout: 12000)
+    Meteor.startup(function () {
 
-    Session.set('sAlert', {message: 'Mission accomplished!'});
+        sAlert.config({
+            effect: 'scale',
+            position: 'right-top',
+            timeout: 5000
+        });
+
+    });
+
+sAlert is based on only client side collection. It is called ````sAlert.collection````
+
+#### Fire up your alerts by using methods:
+
+##### Error:
+
+    sAlert.error('Your message', configOverwrite);
+
+##### Warning:
+
+    sAlert.warning('Your message', configOverwrite);
+
+##### Info:
+
+    sAlert.info('Your message', configOverwrite);
+
+##### Success:
+
+    sAlert.success('Your message', configOverwrite);
+
+##### Close alert:
+
+    sAlert.close(allertId);
+- id is from Meteor collection called ````sAlerts.collection```` (client only)
+
+##### Immediately close all alerts:
+
+    sAlert.closeAll();
 
 
-#####Full config:
+And what is ````configOverwrite````?
+This is an object with all settings which you want to overwrite. So if you have your sAlert config (mentioned above) you can overwrite global config with each of your sAlert calls.
 
-    Session.set('sAlert', {condition: 'blue', effect: 'scale', message: 'Unknown vessel spotted!', position: 'right-top', timeout: 5000});
+**For example:**
 
+    sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'right-bottom', timeout: 'no'});
 
-##### With changed condition, type and effect:
+This one particular error will be displayed in different way.
 
-    Session.set('sAlert', {condition: 'yellow', effect: 'flip', message: 'Unknown vessel spotted!'});
-
-
-##### With only condition changed:
-
-    Session.set('sAlert', {condition: 'red', message: 'Prepare for combat!'});
-
-
-##### Clear/Close alert:
-
-    Session.set('sAlert', null);
-
-
-##### You can set a timeout after which the Alert box will close itself. Just add a timeout param like:
-
-    Session.set('sAlert', {condition: 'red', effect: 'bouncyflip', message: 'lorem ipsum dolor sit', timeout: 2000});
-
-
-It is in milliseconds, default value is set to 12000 milliseconds (12 seconds). If you want do disable auto closing just set timeout to 'no' string ````timeout: 'no'````
-
-##### Avaible conditions:
-
-- red (similar to danger, error)
-- yellow (similar to warning)
-- blue (similar to info)
-- green (similar to success)
-
-##### Avaible effects:
+#### Avaible effects:
 
 - scale
 - slide
@@ -67,12 +81,16 @@ It is in milliseconds, default value is set to 12000 milliseconds (12 seconds). 
 - bouncyflip
 - stackslide (right-top and left-top positions are the same here similar right-botton and left-bottom)
 
-##### Avaible positions:
+#### Avaible positions:
 
 - left-top
 - left-bottom
 - right-top
 - right-bottom
+
+#### Timeout:
+
+You can set up it in miliseconds or place 'no'.
 
 ### CSS styling
 
@@ -80,7 +98,7 @@ You can overwrite all css classes. Major classes which are defined by conditions
 
 ````.s-alert-blue, .s-alert-green, .s-alert-yellow, .s-alert-red````
 
-For example if you want to overwrite .s-alert-red in growl -> scale effect
+For example if you want to overwrite .s-alert-red in scale effect
 
     .s-alert-effect-scale.s-alert-red {
         background: #bada55; //your background color here
@@ -88,9 +106,9 @@ For example if you want to overwrite .s-alert-red in growl -> scale effect
     }
 
 
-### TODO
+#### TODO
 
-- gneral config and logic for sAlerts (this is important part)
+- <s>gneral config and logic for sAlerts (this is important part)</s>
 - clean css files
 - <s>flatten effects combinations</s>
 - multiple alerts with collection

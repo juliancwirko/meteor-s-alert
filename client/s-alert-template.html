@@ -1,11 +1,11 @@
 <template name="sAlert">
-    {{#with sAlertData}}
+    {{#each sAlertData}}
         {{> sAlertContent}}
-    {{/with}}
+    {{/each}}
 </template>
 
 <template name="sAlertContent">
-    <div class="s-alert-box s-alert-effect-{{effect}} s-alert-error s-alert-{{condition}} s-alert-{{position}} s-alert-show" data-timeout="{{timeout}}">
+    <div class="s-alert-box s-alert-effect-{{effect}} s-alert-error s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}">
         <div class="s-alert-box-inner">
             <p>{{message}}</p>
         </div>

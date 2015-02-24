@@ -52,14 +52,17 @@ var conditionSet = function (self, msg, condition, customSettings) {
 
 var EVENTS = 'webkitAnimationEnd oAnimationEnd animationEnd msAnimationEnd animationend';
 var sAlertClose = function (alertId) {
-    $('.s-alert-box#' + alertId).removeClass('s-alert-show');
-    var closingTimeout = Meteor.setTimeout(function () {
-        $('.s-alert-box#' + alertId).addClass('s-alert-hide');
-    }, 100);
-    $('.s-alert-box#' + alertId).off(EVENTS);
-    $('.s-alert-box#' + alertId).on(EVENTS, function () {
-        $(this).css('visibility', 'hidden');
+    if (document.hidden || document.webkitHidden) {
         sAlert.collection.remove(alertId);
-        Meteor.clearTimeout(closingTimeout);
-    });
+    } else {
+        $('.s-alert-box#' + alertId).removeClass('s-alert-show');
+        var closingTimeout = Meteor.setTimeout(function () {
+            $('.s-alert-box#' + alertId).addClass('s-alert-hide');
+        }, 100);
+        $('.s-alert-box#' + alertId).off(EVENTS);
+        $('.s-alert-box#' + alertId).on(EVENTS, function () {
+            sAlert.collection.remove(alertId);
+            Meteor.clearTimeout(closingTimeout);
+        });
+    }
 };

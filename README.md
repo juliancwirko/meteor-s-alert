@@ -1,10 +1,6 @@
 ### Simple and fancy notifications for Meteor
 
-inspiration: [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
-
-### Demo
-
-[http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
+Demo: [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
 
 ### Usage
 
@@ -140,6 +136,10 @@ If you want to owerwrite it you should remember to be careful with all used help
 Place ````{{> sAlert template='sAlertCustom'}}```` in your main template.
 
 - - -
+
+#### Inspiration:
+
+- [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
 
 #### TODO
 

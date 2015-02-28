@@ -5,10 +5,14 @@
 </template>
 
 <template name="sAlertContent">
-    <div class="s-alert-box s-alert-effect-{{effect}} s-alert-error s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}">
-        <div class="s-alert-box-inner">
-            <p>{{message}}</p>
+    {{#if ../template}}
+        {{> Template.dynamic template=../template data=this}}
+    {{else}}
+        <div class="s-alert-box s-alert-effect-{{effect}} s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}">
+            <div class="s-alert-box-inner">
+                <p>{{message}}</p>
+            </div>
+            <span class="s-alert-close"></span>
         </div>
-        <span class="s-alert-close"></span>
-    </div>
+    {{/if}}
 </template>

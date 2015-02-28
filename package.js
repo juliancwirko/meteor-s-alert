@@ -1,6 +1,6 @@
 Package.describe({
     "summary": "Simple and fancy notifications for Meteor.",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "git": "https://github.com/juliancwirko/meteor-s-alert.git",
     "name": "juliancwirko:s-alert"
 });
@@ -10,6 +10,7 @@ Package.onUse(function(api) {
     api.use('mongo@1.0.0');
     api.use('templating@1.0.0');
     api.use('ui@1.0.0');
+    api.use('underscore@1.0.0');
     api.use(['jquery@1.0.0'], ['client']);
 
     api.addFiles([

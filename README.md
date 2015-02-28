@@ -106,6 +106,41 @@ For example if you want to overwrite .s-alert-red in scale effect
     }
 
 
+### Template overwriting
+
+Here is a default template (it will be included when you use standard ````{{> sAlert}}````):
+
+    <div class="s-alert-box s-alert-effect-{{effect}} s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}">
+        <div class="s-alert-box-inner">
+            <p>{{message}}</p>
+        </div>
+        <span class="s-alert-close"></span>
+    </div>
+
+If you want to owerwrite it you should remember to be careful with all used helpers. They should remain in place.
+**Here you have an example of overwriting an alert content template** (Place it somewhere in your html files, you can name it as you want):
+
+    <template name="sAlertCustom">
+        <div class="my-custom-alert-class s-alert-box s-alert-effect-{{effect}} s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}">
+            <div class="s-alert-box-inner">
+                <div class="alert-header">
+                    <h1>Application Alert:</h1>
+                </div>
+                <div class="alert-content">
+                    <i class="fa fa-fw fa-cog"></i>
+                    {{message}}
+                </div>
+            </div>
+            <span class="s-alert-close"></span>
+        </div>
+    </template>
+
+#### Usage of custom template
+
+Place ````{{> sAlert template='sAlertCustom'}}```` in your main template.
+
+- - -
+
 #### TODO
 
 - <s>gneral config and logic for sAlerts (this is important part)</s>

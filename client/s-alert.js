@@ -78,7 +78,6 @@ Meteor.startup(function () {
     if (typeof FlowRouter !== 'undefined') {
         FlowRouter.middleware(function (path, next) {
             sAlert.collection.remove({});
-            console.log('in flow router');
             next();
         });
     }

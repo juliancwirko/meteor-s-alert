@@ -66,3 +66,20 @@ var sAlertClose = function (alertId) {
         });
     }
 };
+
+// routers clean
+Meteor.startup(function () {
+    if (typeof Iron !== 'undefined' && typeof Router !== 'undefined') {
+        Router.onBeforeAction(function () {
+            sAlert.collection.remove({});
+            this.next();
+        });
+    }
+    if (typeof FlowRouter !== 'undefined') {
+        FlowRouter.middleware(function (path, next) {
+            sAlert.collection.remove({});
+            console.log('in flow router');
+            next();
+        });
+    }
+});

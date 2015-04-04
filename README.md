@@ -135,6 +135,11 @@ If you want to owerwrite it you should remember to be careful with all used help
 
 Place ````{{> sAlert template='sAlertCustom'}}```` in your main template.
 
+#### Using with routers:
+
+If you go to another route it should autoclean alerts. Works with Iron Router and FlowRouter.
+If you notice any bugs related with this please drop me a note. Thanks.
+
 - - -
 
 #### Inspiration:

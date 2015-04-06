@@ -145,12 +145,3 @@ If you notice any bugs related with this please drop me a note. Thanks.
 #### Inspiration:
 
 - [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
-
-#### TODO
-
-- <s>gneral config and logic for sAlerts (this is important part)</s>
-- clean css files
-- <s>flatten effects combinations</s>
-- multiple alerts with collection
-- (if time permits..) more fancy styles
-- (if time permits..) for now SVG examples and all effects from 'other' type (from codrops example) are removed

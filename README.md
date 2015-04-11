@@ -1,6 +1,7 @@
 ### Simple and fancy notifications for Meteor
 
-Demo: [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
+- Website: [http://s-alert.meteor.com/](http://s-alert.meteor.com/)
+- Demo: [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
 
 ### Usage
 

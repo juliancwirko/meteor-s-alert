@@ -120,7 +120,7 @@ If you want to owerwrite it you should remember to be careful with all used help
         <div class="my-custom-alert-class s-alert-box s-alert-effect-{{effect}} s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}">
             <div class="s-alert-box-inner">
                 <div class="alert-header">
-                    <h1>{{alertTitle}}</h1>
+                    <h1>{{sAlertTitle}}</h1>
                 </div>
                 <div class="alert-content">
                     <i class="fa fa-fw fa-cog"></i>

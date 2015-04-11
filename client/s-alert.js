@@ -42,8 +42,13 @@ sAlert = {
 // helper functions
 var conditionSet = function (self, msg, condition, customSettings) {
     customSettings = customSettings || {};
+    if (_.isObject(msg)) {
+        self.settings = _.extend(self.settings, msg, {condition: condition}, customSettings);
+    }
     if (_.isString(msg)) {
         self.settings = _.extend(self.settings, {message: msg}, {condition: condition}, customSettings);
+    }
+    if (_.isObject(self.settings)) {
         sAlert.collection.insert(self.settings);
     } else {
         throw new Meteor.Error(400, 'Message must be a string!');

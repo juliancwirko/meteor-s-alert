@@ -120,7 +120,7 @@ If you want to owerwrite it you should remember to be careful with all used help
         <div class="my-custom-alert-class s-alert-box s-alert-effect-{{effect}} s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}">
             <div class="s-alert-box-inner">
                 <div class="alert-header">
-                    <h1>Application Alert:</h1>
+                    <h1>{{alertTitle}}</h1>
                 </div>
                 <div class="alert-content">
                     <i class="fa fa-fw fa-cog"></i>
@@ -134,6 +134,15 @@ If you want to owerwrite it you should remember to be careful with all used help
 #### Usage of custom template
 
 Place ````{{> sAlert template='sAlertCustom'}}```` in your main template.
+
+#### Custom fields
+
+As you can see in a custom `sAlertCustom` template we have used `sAlertTitle` custom helper. Now if you want to pass the value to it you should call one of sAlert functions with first param as an object instead of a message string. See example:
+
+```
+sAlert.info({sAlertTitle: 'My custom sAlert field - the title', message: 'My sAlert message here'}, configOverwrite);
+```
+You can pass as many fields as you like. Remember to add the corresponding helpers in template. `configOverwrite` works here the same as described above. It is of course optional.
 
 #### Using with routers:
 

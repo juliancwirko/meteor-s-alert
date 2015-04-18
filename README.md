@@ -3,13 +3,26 @@
 - Website: [http://s-alert.meteor.com/](http://s-alert.meteor.com/)
 - Demo: [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
 
+**Note: From version 2.0.0 you should also choose and add effect package.**
+This is more elastic and optimal solution (effects css file contained all effects styles and it was heavy). It will work without effects too. You can add as many effect packages as you want. Config and usage is the same.
+
 ### Usage
 
 Add package:
 
     meteor add juliancwirko:s-alert
 
-Then place ````{{> sAlert}}```` in your main template. Recomended usage:
+Or/And add it with one of effects:
+
+    meteor add juliancwirko:s-alert-scale
+    meteor add juliancwirko:s-alert-slide
+    meteor add juliancwirko:s-alert-genie
+    meteor add juliancwirko:s-alert-jelly
+    meteor add juliancwirko:s-alert-flip
+    meteor add juliancwirko:s-alert-bouncyflip
+    meteor add juliancwirko:s-alert-stackslide
+
+Then place `{{> sAlert}}` in your main template. Recomended usage:
 
     <body>
         {{> sAlert}}
@@ -29,7 +42,7 @@ You can set up your sAlert (client side). (More about possible configuration opt
 
     });
 
-sAlert is based on only client side collection. It is called ````sAlert.collection````
+sAlert is based on only client side collection. It is called `sAlert.collection`
 
 #### Fire up your alerts by using methods:
 
@@ -52,14 +65,14 @@ sAlert is based on only client side collection. It is called ````sAlert.collecti
 ##### Close alert:
 
     sAlert.close(allertId);
-- id is from Meteor collection called ````sAlerts.collection```` (client only)
+- id is from Meteor collection called `sAlerts.collection` (client only)
 
 ##### Immediately close all alerts:
 
     sAlert.closeAll();
 
 
-And what is ````configOverwrite````?
+And what is `configOverwrite`?
 This is an object with all settings which you want to overwrite. So if you have your sAlert config (mentioned above) you can overwrite global config with each of your sAlert calls.
 
 **For example:**
@@ -70,13 +83,13 @@ This one particular error will be displayed in different way.
 
 #### Avaible effects:
 
-- scale
-- slide
-- genie
-- jelly
-- flip
-- bouncyflip
-- stackslide (right-top and left-top positions are the same here similar right-botton and left-bottom)
+- scale - `meteor add juliancwirko:s-alert-scale`
+- slide - `meteor add juliancwirko:s-alert-slide`
+- genie - `meteor add juliancwirko:s-alert-genie`
+- jelly - `meteor add juliancwirko:s-alert-jelly`
+- flip - `meteor add juliancwirko:s-alert-flip`
+- bouncyflip - `meteor add juliancwirko:s-alert-bouncyflip`
+- stackslide - `meteor add juliancwirko:s-alert-stackslide` (right-top and left-top positions are the same here similar right-botton and left-bottom)
 
 #### Avaible positions:
 
@@ -93,7 +106,7 @@ You can set up it in miliseconds or place 'no'.
 
 You can overwrite all css classes. Major classes which are defined by conditions are:
 
-````.s-alert-blue, .s-alert-green, .s-alert-yellow, .s-alert-red````
+`.s-alert-blue, .s-alert-green, .s-alert-yellow, .s-alert-red`
 
 For example if you want to overwrite .s-alert-red in scale effect
 
@@ -102,10 +115,32 @@ For example if you want to overwrite .s-alert-red in scale effect
         color: #fff //your text color here
     }
 
+### Your own effects packages
+
+You can prepare your own effect package. As a reference take one of the ready to use packages. You will find the code on GitHub. You can create your own animations, but remember to use `.s-alert-effect-{your-effect-name-here}` prefix. Then you can use it like:
+
+```
+sAlert.error('Boom! Something went wrong!', {effect: 'your-effect-name-here', position: 'right-bottom', timeout: 'no'});
+```
+
+Or you can place it in the config:
+
+```
+Meteor.startup(function () {
+
+    sAlert.config({
+        effect: 'your-effect-name-here',
+        position: 'right-top',
+        timeout: 5000
+    });
+
+});
+```
+If you want to have your effect package linked here just let me know.
 
 ### Template overwriting
 
-Here is a default template (it will be included when you use standard ````{{> sAlert}}````):
+Here is a default template (it will be included when you use standard `{{> sAlert}}`):
 
     <div class="s-alert-box s-alert-effect-{{effect}} s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}">
         <div class="s-alert-box-inner">
@@ -134,7 +169,7 @@ If you want to owerwrite it you should remember to be careful with all used help
 
 #### Usage of custom template
 
-Place ````{{> sAlert template='sAlertCustom'}}```` in your main template.
+Place `{{> sAlert template='sAlertCustom'}}` in your main template.
 
 #### Custom fields
 
@@ -155,3 +190,5 @@ If you notice any bugs related with this please drop me a note. Thanks.
 #### Inspiration:
 
 - [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
+
+Thanks a lot for those who report bugs and request changes. S-alert keeps getting better.

@@ -7,15 +7,16 @@ Template.sAlert.helpers({
 });
 
 Template.sAlertContent.rendered = function () {
-    var tmpl = this,
-        sAlertTimeout = this.data.timeout;
+    var tmpl = this;
+    var data = Template.currentData();
+    var sAlertTimeout = data.timeout;
     if (sAlertTimeout && sAlertTimeout !== 'no') {
         sAlertTimeout = parseInt(sAlertTimeout);
         if (tmpl.sAlertCloseTimeout) {
             Meteor.clearTimeout(tmpl.sAlertCloseTimeout);
         }
         tmpl.sAlertCloseTimeout = Meteor.setTimeout(function () {
-            sAlert.close(tmpl.data._id);
+            sAlert.close(data._id);
         }, sAlertTimeout);
     }
 };

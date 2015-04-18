@@ -50,7 +50,7 @@
 	backface-visibility: hidden;
 }
 
-.s-alert-close:hover, 
+.s-alert-close:hover,
 .s-alert-close:focus {
 	outline: none;
 }
@@ -125,4 +125,10 @@
 .s-alert-red {
     background: #E74C3C;
     color: #fff;
+}
+
+[class^="s-alert-effect-"].s-alert-hide,
+[class*=" s-alert-effect-"].s-alert-hide {
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
 }

@@ -1,11 +1,11 @@
 Package.describe({
-    "summary": "Simple and fancy notifications / alerts for Meteor.",
-    "version": "1.2.0",
-    "git": "https://github.com/juliancwirko/meteor-s-alert.git",
-    "name": "juliancwirko:s-alert"
+    'summary': 'Simple and fancy notifications / alerts for Meteor.',
+    'version': '2.0.0',
+    'git': 'https://github.com/juliancwirko/meteor-s-alert.git',
+    'name': 'juliancwirko:s-alert'
 });
 
-Package.onUse(function(api) {
+Package.onUse(function (api) {
 
     api.use('mongo@1.0.0');
     api.use('templating@1.0.0');
@@ -15,9 +15,8 @@ Package.onUse(function(api) {
 
     api.addFiles([
         'client/s-alert.js',
-        'client/collection.js',
-        'client/css/s-alert-default.css',
-        'client/css/s-alert-effects.css',
+        'client/s-alert-collection.js',
+        'client/s-alert-default.css',
         'client/s-alert-template.html',
         'client/s-alert-template.js'
     ], 'client');

@@ -10,7 +10,7 @@ Template.sAlertContent.rendered = function () {
     var tmpl = this;
     var data = Template.currentData();
     var sAlertTimeout = data.timeout;
-    if (sAlertTimeout && sAlertTimeout !== 'no') {
+    if (sAlertTimeout && sAlertTimeout !== 'no' && sAlertTimeout !== 'none') {
         sAlertTimeout = parseInt(sAlertTimeout);
         if (tmpl.sAlertCloseTimeout) {
             Meteor.clearTimeout(tmpl.sAlertCloseTimeout);

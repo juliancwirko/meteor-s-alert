@@ -64,16 +64,16 @@ sAlert = {
         }
     },
     info: function (msg, customSettings) {
-        conditionSet(this, msg, 'blue', customSettings);
+        conditionSet(this, msg, 'info', customSettings);
     },
     error: function (msg, customSettings) {
-        conditionSet(this, msg, 'red', customSettings);
+        conditionSet(this, msg, 'error', customSettings);
     },
     success: function (msg, customSettings) {
-        conditionSet(this, msg, 'green', customSettings);
+        conditionSet(this, msg, 'success', customSettings);
     },
     warning: function (msg, customSettings) {
-        conditionSet(this, msg, 'yellow', customSettings);
+        conditionSet(this, msg, 'warning', customSettings);
     }
 };
 

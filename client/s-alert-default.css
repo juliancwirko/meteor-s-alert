@@ -83,46 +83,66 @@
 
 /* positions */
 
-.s-alert-left-bottom {
+.s-alert-left-bottom,
+.s-alert-bottom-left {
 	top: auto;
 	right: auto;
 	bottom: 30px;
 	left: 30px;
 }
-.s-alert-left-top {
+.s-alert-left-top,
+.s-alert-top-left {
 	top: 30px;
 	right: auto;
 	bottom: auto;
 	left: 30px;
 }
-.s-alert-right-top {
+.s-alert-right-top,
+.s-alert-top-right {
 	top: 30px;
 	right: 30px;
 	bottom: auto;
 	left: auto;
 }
-.s-alert-right-bottom { /*default*/
+.s-alert-right-bottom,
+.s-alert-bottom-right { /*default*/
 	top: auto;
 	right: 30px;
 	bottom: 30px;
 	left: auto;
+}
+.s-alert-bottom {
+	width: 100%;
+	max-width: 100%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: auto;
+}
+.s-alert-top {
+	width: 100%;
+	max-width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: auto;
 }
 
 /* conditions */
 
-.s-alert-blue {
+.s-alert-info {
     background: #00A2D3;
     color: #fff;
 }
-.s-alert-green {
+.s-alert-success {
     background: #27AE60;
     color: #fff;
 }
-.s-alert-yellow {
+.s-alert-warning {
     background: #F1C40F;
     color: #fff;
 }
-.s-alert-red {
+.s-alert-error {
     background: #E74C3C;
     color: #fff;
 }

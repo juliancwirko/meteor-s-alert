@@ -24,31 +24,35 @@ Optionally, add one or more effects:
 
 Then place `{{> sAlert}}` in your main template. Recomended usage:
 
-    <body>
-        {{> sAlert}}
-    </body>
+```handlebars
+<body>
+    {{> sAlert}}
+</body>
+```
 
 #### sAlert configuration
 
 sAlert can optionally be configured on the client (more about possible configuration options below). The defaults are below:
 
-    Meteor.startup(function () {
+```js
+Meteor.startup(function () {
 
-        sAlert.config({
-            effect: 'scale',
-            position: 'top-right',
-            timeout: 5000
-        });
-
+    sAlert.config({
+        effect: 'scale',
+        position: 'top-right',
+        timeout: 5000
     });
 
-sAlert is based on a [client-only collection](http://docs.meteor.com/#/full/mongo_collection). It is called `sAlert.collection`.
+});
+```
 
-sAlert methods returns the ID of the alert they have just created
+sAlert is based on a [client-only collection](http://docs.meteor.com/#/full/mongo_collection). It is called `sAlert.collection`. Every sAlert method returns the ID of the alert it has just created.
 
-    var warningThatWeWantToCloseLater = sAlert.warning('Please register', {timeout: 'none'});
-    /* ... */
-    sAlert.close(warningThatWeWantToCloseLater);
+```js
+var warningThatWeWantToCloseLater = sAlert.warning('Please register', {timeout: 'none'});
+/* ... */
+sAlert.close(warningThatWeWantToCloseLater);
+```
 
 #### Fire up your alerts with these methods:
 
@@ -70,8 +74,7 @@ sAlert methods returns the ID of the alert they have just created
 
 ##### Close alert:
 
-    sAlert.close(allertId);
-- id is from Meteor collection called `sAlerts.collection` (client only)
+    sAlert.close(alertId);
 
 ##### Immediately close all alerts:
 
@@ -81,7 +84,9 @@ sAlert methods returns the ID of the alert they have just created
 
 And what is `configOverwrite`? This is an object with all the settings you want to override, on a per-alert basis. For example:
 
-    sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'bottom-right', timeout: 'none'});
+```js
+sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'bottom-right', timeout: 'none'});
+```
 
 This particular error will be displayed in different way.
 
@@ -116,16 +121,20 @@ You can override all CSS classes by targeting `s-alert-{{alertType}}.s-alert-eff
 
 For example, this CSS rule will override the style for `.s-alert-error` when displayed with the `scale` effect:
 
-    .s-alert-error.s-alert-effect-scale {
-        background: #bada55;  /* your background color here */
-        color: #fff  /* your text color here */
-    }
+```css
+.s-alert-error.s-alert-effect-scale {
+    background: #bada55;  /* your background color here */
+    color: #fff  /* your text color here */
+}
+```
 
 ### Your own effects packages
 
 You can prepare your own effect package. As a reference, look at one of the ready-to-use packages, such as [meteor-s-alert-jelly](https://github.com/juliancwirko/meteor-s-alert-jelly). You can create your own animations, but remember to use the `.s-alert-effect-{your-effect-name-here}` prefix. Then you can use it like:
 
-    sAlert.error('Boom! Something went wrong!', {effect: 'your-effect-name-here'});
+```js
+sAlert.error('Boom! Something went wrong!', {effect: 'your-effect-name-here'});
+```
 
 
 Or you can place it in the config:
@@ -148,30 +157,34 @@ If you want to have your effect package linked here just let me know.
 
 Here is a default template (it will be included when you use the standard `{{> sAlert}}`):
 
-    <div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}">
-        <div class="s-alert-box-inner">
-            <p>{{message}}</p>
-        </div>
-        <span class="s-alert-close"></span>
+```handlebars
+<div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}">
+    <div class="s-alert-box-inner">
+        <p>{{message}}</p>
     </div>
+    <span class="s-alert-close"></span>
+</div>
+```
 
 If you want to owerwrite it you should remember to be careful with all used helpers. They should remain in place.
 **Here you have an example of overwriting an alert content template** (Place it somewhere in your html files, you can name it as you want):
 
-    <template name="sAlertCustom">
-        <div class="custom-alert-class s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}">
-            <div class="s-alert-box-inner">
-                <div class="alert-header">
-                    <h1>{{sAlertTitle}}</h1>
-                </div>
-                <div class="alert-content">
-                    <i class="fa fa-fw fa-cog"></i>
-                    {{message}}
-                </div>
+```handlebars
+<template name="sAlertCustom">
+    <div class="custom-alert-class s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}">
+        <div class="s-alert-box-inner">
+            <div class="alert-header">
+                <h1>{{sAlertTitle}}</h1>
             </div>
-            <span class="s-alert-close"></span>
+            <div class="alert-content">
+                <i class="fa fa-fw fa-cog"></i>
+                {{message}}
+            </div>
         </div>
-    </template>
+        <span class="s-alert-close"></span>
+    </div>
+</template>
+```
 
 #### Usage of custom template
 
@@ -181,7 +194,9 @@ Place `{{> sAlert template='sAlertCustom'}}` in your main template.
 
 As you can see in a custom `sAlertCustom` template we have used the `sAlertTitle` custom helper. Now if you want to pass the value to it you should call one of sAlert functions with the first parameter being an object instead of a message string:
 
-    sAlert.info({sAlertTitle: 'My custom sAlert field - the title', message: 'My sAlert message here'}, configOverwrite);
+```js
+sAlert.info({sAlertTitle: 'My custom sAlert field - the title', message: 'My sAlert message here'}, configOverwrite);
+```
 
 You can pass as many fields as you like. Remember to add the corresponding helpers in the template. `configOverwrite` works here the same as described above. It is of course optional.
 

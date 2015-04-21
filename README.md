@@ -200,8 +200,8 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 #### Changelog
 
 - v2.1.1
-    - console info fix (#12)
-    - sAlert init functions now returns alert id (#15)
+    - console info fix ([#12](https://github.com/juliancwirko/meteor-s-alert/issues/12))
+    - sAlert init functions now returns alert id ([#15](https://github.com/juliancwirko/meteor-s-alert/issues/15))
 
 - v2.1.0
     - Postition names changed; example: 'right-bottom' is now 'bottom-right' etc. (The old names will work too, for backwards compatibility, but will be removed in v3.0.0.)

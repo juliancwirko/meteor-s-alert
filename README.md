@@ -44,6 +44,12 @@ sAlert can optionally be configured on the client (more about possible configura
 
 sAlert is based on a [client-only collection](http://docs.meteor.com/#/full/mongo_collection). It is called `sAlert.collection`.
 
+sAlert methods returns the ID of the alert they have just created
+
+    var warningThatWeWantToCloseLater = sAlert.warning('Please register', {timeout: 'none'});
+    /* ... */
+    sAlert.close(warningThatWeWantToCloseLater);
+
 #### Fire up your alerts with these methods:
 
 ##### Error
@@ -189,9 +195,13 @@ If you go to another route, the alerts should automatically be cleaned up. This 
 
 - [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
 
-Thanks a lot for those who report bugs and request changes. sAlert keeps getting better.
+Thanks a lot for those who report bugs and request changes (especially @dandv). sAlert keeps getting better.
 
 #### Changelog
+
+- v2.1.1
+    - console info fix (#12)
+    - sAlert init functions now returns alert id (#15)
 
 - v2.1.0
     - Postition names changed; example: 'right-bottom' is now 'bottom-right' etc. (The old names will work too, for backwards compatibility, but will be removed in v3.0.0.)

@@ -3,11 +3,9 @@
 // helper functions
 var conditionSet = function (self, msg, condition, customSettings) {
     var settings = {};
-    var currentEffect = customSettings && customSettings.effect;
     var effects = ['jelly', 'genie', 'stackslide', 'scale', 'slide', 'flip', 'bouncyflip'];
-    if (_.contains(effects, currentEffect) && !Package['juliancwirko:s-alert-' + currentEffect] && typeof console !== 'undefined') {
-        console.info('Install "' + currentEffect + '" effect by running "meteor add juliancwirko:s-alert-' + currentEffect + '"');
-    }
+    var currentEffect;
+    var sAlertId;
     if (!_.isObject(customSettings)) {
         customSettings = {};
     }
@@ -17,9 +15,14 @@ var conditionSet = function (self, msg, condition, customSettings) {
     if (_.isString(msg) && _.isString(condition)) {
         settings = _.extend(settings, self.settings, {message: msg}, {condition: condition}, customSettings);
     }
-    if (_.isObject(settings)) {
-        sAlert.collection.insert(settings);
+    currentEffect = settings && settings.effect;
+    if (_.contains(effects, currentEffect) && !Package['juliancwirko:s-alert-' + currentEffect] && typeof console !== 'undefined') {
+        console.info('Install "' + currentEffect + '" effect by running "meteor add juliancwirko:s-alert-' + currentEffect + '"');
     }
+    if (_.isObject(settings)) {
+        sAlertId = sAlert.collection.insert(settings);
+    }
+    return sAlertId;
 };
 
 var EVENTS = 'webkitAnimationEnd oAnimationEnd animationEnd msAnimationEnd animationend';
@@ -64,16 +67,16 @@ sAlert = {
         }
     },
     info: function (msg, customSettings) {
-        conditionSet(this, msg, 'info', customSettings);
+        return conditionSet(this, msg, 'info', customSettings);
     },
     error: function (msg, customSettings) {
-        conditionSet(this, msg, 'error', customSettings);
+        return conditionSet(this, msg, 'error', customSettings);
     },
     success: function (msg, customSettings) {
-        conditionSet(this, msg, 'success', customSettings);
+        return conditionSet(this, msg, 'success', customSettings);
     },
     warning: function (msg, customSettings) {
-        conditionSet(this, msg, 'warning', customSettings);
+        return conditionSet(this, msg, 'warning', customSettings);
     }
 };
 

@@ -3,8 +3,8 @@
 - Website: [http://s-alert.meteor.com/](http://s-alert.meteor.com/)
 - Demo: [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
 
-**Note: From version 2.0.0 you should also choose and add effect package.**
-This is more elastic and optimal solution (effects css file contained all effects styles and it was heavy). It will work without effects too. You can add as many effect packages as you want. Config and usage is the same.
+**Note: Starting with version 2.0.0 you should also choose and add and effect package.**
+This is a more flexible and lean solution (previously, the effects CSS file contained all effect styles and it was heavy). sAlert will work without effects as well. You can add as many effect packages as you want. Config and usage are the same.
 
 ### Usage
 
@@ -12,7 +12,7 @@ Add package:
 
     meteor add juliancwirko:s-alert
 
-Or/And add it with one of effects:
+Optionally, add one or more effects:
 
     meteor add juliancwirko:s-alert-scale
     meteor add juliancwirko:s-alert-slide
@@ -30,7 +30,7 @@ Then place `{{> sAlert}}` in your main template. Recomended usage:
 
 #### sAlert configuration
 
-You can set up your sAlert (client side). (More about possible configuration options below.) You can ommit it and you will have standard config which is the same as the one below:
+sAlert can optionally be configured on the client (more about possible configuration options below). The defaults are below:
 
     Meteor.startup(function () {
 
@@ -42,23 +42,23 @@ You can set up your sAlert (client side). (More about possible configuration opt
 
     });
 
-sAlert is based on only client side collection. It is called `sAlert.collection`
+sAlert is based on a [client-only collection](http://docs.meteor.com/#/full/mongo_collection). It is called `sAlert.collection`.
 
-#### Fire up your alerts by using methods:
+#### Fire up your alerts with these methods:
 
-##### Error:
+##### Error
 
     sAlert.error('Your message', configOverwrite);
 
-##### Warning:
+##### Warning
 
     sAlert.warning('Your message', configOverwrite);
 
-##### Info:
+##### Info
 
     sAlert.info('Your message', configOverwrite);
 
-##### Success:
+##### Success
 
     sAlert.success('Your message', configOverwrite);
 
@@ -71,15 +71,13 @@ sAlert is based on only client side collection. It is called `sAlert.collection`
 
     sAlert.closeAll();
 
+#### Individual alert configuration
 
-And what is `configOverwrite`?
-This is an object with all settings which you want to overwrite. So if you have your sAlert config (mentioned above) you can overwrite global config with each of your sAlert calls.
-
-**For example:**
+And what is `configOverwrite`? This is an object with all the settings you want to override, on a per-alert basis. For example:
 
     sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'bottom-right', timeout: 'none'});
 
-This one particular error will be displayed in different way.
+This particular error will be displayed in different way.
 
 #### Avaible effects:
 
@@ -102,32 +100,31 @@ This one particular error will be displayed in different way.
 
 #### Timeout:
 
-You can set up it in miliseconds or place `none` string.
+You can set up it in miliseconds or use the string `none`.
 
 ### CSS styling
 
-You can overwrite all css classes. Major classes which are defined by conditions are:
+You can override all CSS classes by targeting `s-alert-{{alertType}}.s-alert-effect-{{effectType}}`. The alert type classes are:
 
-`.s-alert-info, .s-alert-success, .s-alert-warning, .s-alert-error`
+    .s-alert-info, .s-alert-success, .s-alert-warning, .s-alert-error
 
-For example if you want to overwrite .s-alert-red in scale effect
+For example, this CSS rule will override the style for `.s-alert-error` when displayed with the `scale` effect:
 
     .s-alert-error.s-alert-effect-scale {
-        background: #bada55; //your background color here
-        color: #fff //your text color here
+        background: #bada55;  /* your background color here */
+        color: #fff  /* your text color here */
     }
 
 ### Your own effects packages
 
-You can prepare your own effect package. As a reference take one of the ready to use packages. You will find the code on GitHub. You can create your own animations, but remember to use `.s-alert-effect-{your-effect-name-here}` prefix. Then you can use it like:
+You can prepare your own effect package. As a reference, look at one of the ready-to-use packages, such as [meteor-s-alert-jelly](https://github.com/juliancwirko/meteor-s-alert-jelly). You can create your own animations, but remember to use the `.s-alert-effect-{your-effect-name-here}` prefix. Then you can use it like:
 
-```
-sAlert.error('Boom! Something went wrong!', {effect: 'your-effect-name-here', position: 'bottom-right', timeout: 'none'});
-```
+    sAlert.error('Boom! Something went wrong!', {effect: 'your-effect-name-here'});
+
 
 Or you can place it in the config:
 
-```
+```js
 Meteor.startup(function () {
 
     sAlert.config({
@@ -138,11 +135,12 @@ Meteor.startup(function () {
 
 });
 ```
+
 If you want to have your effect package linked here just let me know.
 
 ### Template overwriting
 
-Here is a default template (it will be included when you use standard `{{> sAlert}}`):
+Here is a default template (it will be included when you use the standard `{{> sAlert}}`):
 
     <div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}">
         <div class="s-alert-box-inner">
@@ -175,17 +173,15 @@ Place `{{> sAlert template='sAlertCustom'}}` in your main template.
 
 #### Custom fields
 
-As you can see in a custom `sAlertCustom` template we have used `sAlertTitle` custom helper. Now if you want to pass the value to it you should call one of sAlert functions with first param as an object instead of a message string. See example:
+As you can see in a custom `sAlertCustom` template we have used the `sAlertTitle` custom helper. Now if you want to pass the value to it you should call one of sAlert functions with the first parameter being an object instead of a message string:
 
-```
-sAlert.info({sAlertTitle: 'My custom sAlert field - the title', message: 'My sAlert message here'}, configOverwrite);
-```
-You can pass as many fields as you like. Remember to add the corresponding helpers in template. `configOverwrite` works here the same as described above. It is of course optional.
+    sAlert.info({sAlertTitle: 'My custom sAlert field - the title', message: 'My sAlert message here'}, configOverwrite);
+
+You can pass as many fields as you like. Remember to add the corresponding helpers in the template. `configOverwrite` works here the same as described above. It is of course optional.
 
 #### Using with routers:
 
-If you go to another route it should autoclean alerts. Works with Iron Router and FlowRouter.
-If you notice any bugs related with this please drop me a note. Thanks.
+If you go to another route, the alerts should automatically be cleaned up. This works with Iron Router and FlowRouter.
 
 - - -
 
@@ -193,14 +189,14 @@ If you notice any bugs related with this please drop me a note. Thanks.
 
 - [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
 
-Thanks a lot for those who report bugs and request changes. S-alert keeps getting better.
+Thanks a lot for those who report bugs and request changes. sAlert keeps getting better.
 
 #### Changelog
 
 - v2.1.0
-    - Postitions names changed; example: 'right-bottom' is now 'bottom-right' etc. (old names should work too. It will be removed in v3.0.0)
-    - css classes names changed; example: '.s-alert-blue' is now '.s-alert-info' etc. coresponding to sAlert.info(...) etc.
-    - 2 new positions: 'top', 'bottom' (full width alerts for all kind of effects.)
-    - timeout 'no' is now 'none' ('no' will work to - will be removed in v3.0.0)
+    - Postition names changed; example: 'right-bottom' is now 'bottom-right' etc. (The old names will work too, for backwards compatibility, but will be removed in v3.0.0.)
+    - CSS class names changed; example: '.s-alert-blue' is now '.s-alert-info', coresponding to sAlert.info(...) etc.
+    - two new positions: 'top' and 'bottom', for full-width alerts; they work for all effects
+    - timeout 'no' is now 'none' ('no' is deprecated and will work but will be removed in v3.0.0)
 
-- v2.0.0 - divide effects into separate packages
+- v2.0.0 - factor out effects into separate packages

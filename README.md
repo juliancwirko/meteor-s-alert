@@ -195,7 +195,7 @@ If you go to another route, the alerts should automatically be cleaned up. This 
 
 - [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
 
-Thanks a lot for those who report bugs and request changes (especially @dandv). sAlert keeps getting better.
+Thanks a lot for those who report bugs and request changes (especially [@dandv](https://github.com/dandv)). sAlert keeps getting better.
 
 #### Changelog
 

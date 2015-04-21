@@ -38,7 +38,7 @@ sAlert can optionally be configured on the client (more about possible configura
 Meteor.startup(function () {
 
     sAlert.config({
-        effect: 'scale',
+        effect: '',
         position: 'top-right',
         timeout: 5000
     });

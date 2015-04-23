@@ -33,3 +33,10 @@ Template.sAlertContent.events({
         sAlert.close(this._id);
     }
 });
+
+Template.sAlertContent.helpers({
+    isHtml: function() {
+        var data = Template.currentData();
+        return data.html;
+    }    
+});

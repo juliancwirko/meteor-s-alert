@@ -48,7 +48,8 @@ sAlert = {
     settings: {
         effect: '',
         position: 'right-top',
-        timeout: 5000
+        timeout: 5000,
+        html: false
     },
     config: function (configObj) {
         var self = this;

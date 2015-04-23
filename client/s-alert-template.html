@@ -10,7 +10,7 @@
     {{else}}
         <div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}">
             <div class="s-alert-box-inner">
-                <p>{{message}}</p>
+                <p>{{#if isHtml}}{{{message}}}{{else}}{{message}}{{/if}}</p>
             </div>
             <span class="s-alert-close"></span>
         </div>

@@ -35,8 +35,8 @@ Template.sAlertContent.events({
 });
 
 Template.sAlertContent.helpers({
-    isHtml: function() {
+    isHtml: function () {
         var data = Template.currentData();
-        return data.html;
-    }    
+        return data && data.html;
+    }
 });

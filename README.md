@@ -40,7 +40,8 @@ Meteor.startup(function () {
     sAlert.config({
         effect: '',
         position: 'top-right',
-        timeout: 5000
+        timeout: 5000,
+        html: false
     });
 
 });
@@ -112,6 +113,16 @@ This particular error will be displayed in different way.
 #### Timeout:
 
 You can set up it in miliseconds or use the string `none`.
+
+#### HTML tags
+
+If you want you can use HTML in your message.
+
+```js
+sAlert.error('Boom! <br> Something went wrong!', {effect: 'your-effect-name-here', html: true});
+```
+
+You can also put it in the main sAlert config.
 
 ### CSS styling
 
@@ -214,14 +225,18 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 
 #### Changelog
 
-- v2.1.1
-    - console info fix ([#12](https://github.com/juliancwirko/meteor-s-alert/issues/12))
-    - sAlert init functions now returns alert id ([#15](https://github.com/juliancwirko/meteor-s-alert/issues/15))
+#### v2.2.0
+- now you can use HTML in your messages (thanks to [@gibex](https://github.com/gibex))
 
-- v2.1.0
-    - Postition names changed; example: 'right-bottom' is now 'bottom-right' etc. (The old names will work too, for backwards compatibility, but will be removed in v3.0.0.)
-    - CSS class names changed; example: '.s-alert-blue' is now '.s-alert-info', coresponding to sAlert.info(...) etc.
-    - two new positions: 'top' and 'bottom', for full-width alerts; they work for all effects
-    - timeout 'no' is now 'none' ('no' is deprecated and will work but will be removed in v3.0.0)
+#### v2.1.1
+- console info fix ([#12](https://github.com/juliancwirko/meteor-s-alert/issues/12))
+- sAlert init functions now returns alert id ([#15](https://github.com/juliancwirko/meteor-s-alert/issues/15))
 
-- v2.0.0 - factor out effects into separate packages
+#### v2.1.0
+- Postition names changed; example: 'right-bottom' is now 'bottom-right' etc. (The old names will work too, for backwards compatibility, but will be removed in v3.0.0.)
+- CSS class names changed; example: '.s-alert-blue' is now '.s-alert-info', coresponding to sAlert.info(...) etc.
+- two new positions: 'top' and 'bottom', for full-width alerts; they work for all effects
+- timeout 'no' is now 'none' ('no' is deprecated and will work but will be removed in v3.0.0)
+
+####v2.0.0
+- factor out effects into separate packages

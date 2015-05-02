@@ -226,7 +226,7 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 #### Changelog
 
 #### v2.3.0
-- displaying more than one alert before the previous one ([#7](https://github.com/juliancwirko/meteor-s-alert/issues/7))
+- displaying more than one alert ([#7](https://github.com/juliancwirko/meteor-s-alert/issues/7))
 
 #### v2.2.0
 - now you can use HTML in your messages (thanks to [@gibex](https://github.com/gibex))

@@ -11,6 +11,8 @@
 	font-size: 100%;
 	font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
 	max-width: 300px;
+	-webkit-transition: top .4s, bottom .4s;
+	transition: top .4s, bottom .4s;
 }
 
 .s-alert-box.s-alert-show {
@@ -151,4 +153,10 @@
 [class*=" s-alert-effect-"].s-alert-hide {
     -webkit-animation-direction: reverse;
     animation-direction: reverse;
+}
+
+/* height measurement helper */
+.s-alert-box-height {
+	visibility: hidden;
+	position: fixed;
 }

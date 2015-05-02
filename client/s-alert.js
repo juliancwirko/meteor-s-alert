@@ -37,6 +37,7 @@ var sAlertClose = function (alertId) {
         }, 100);
         $('.s-alert-box#' + alertId).off(EVENTS);
         $('.s-alert-box#' + alertId).on(EVENTS, function () {
+            $(this).hide();
             sAlert.collection.remove(alertId);
             Meteor.clearTimeout(closingTimeout);
         });

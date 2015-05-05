@@ -91,7 +91,7 @@ sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'bottom-
 
 This particular error will be displayed in different way.
 
-#### Avaible effects:
+#### Available effects:
 
 - scale - `meteor add juliancwirko:s-alert-scale`
 - slide - `meteor add juliancwirko:s-alert-slide`
@@ -101,7 +101,7 @@ This particular error will be displayed in different way.
 - bouncyflip - `meteor add juliancwirko:s-alert-bouncyflip`
 - stackslide - `meteor add juliancwirko:s-alert-stackslide`
 
-#### Avaible positions:
+#### Available positions:
 
 - top-left
 - bottom-left

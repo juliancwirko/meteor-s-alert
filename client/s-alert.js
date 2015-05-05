@@ -85,9 +85,8 @@ sAlert = {
 // routers clean
 Meteor.startup(function () {
     if (typeof Iron !== 'undefined' && typeof Router !== 'undefined') {
-        Router.onBeforeAction(function () {
+        Router.onStop(function () {
             sAlert.collection.remove({});
-            this.next();
         });
     }
     if (typeof FlowRouter !== 'undefined') {

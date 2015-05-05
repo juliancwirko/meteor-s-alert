@@ -225,6 +225,9 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 
 #### Changelog
 
+#### v2.3.1
+- Iron Router clear fix
+
 #### v2.3.0
 - displaying more than one alert ([#7](https://github.com/juliancwirko/meteor-s-alert/issues/7))
 

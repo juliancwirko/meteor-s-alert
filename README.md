@@ -215,6 +215,20 @@ You can pass as many fields as you like. Remember to add the corresponding helpe
 
 If you go to another route, the alerts should automatically be cleaned up. This works with Iron Router and FlowRouter.
 
+#### Testing
+
+Run Meteor with:
+
+```
+meteor test-packages --driver-package respondly:test-reporter juliancwirko:s-alert
+```
+
+and go to:
+
+```
+http://localhost:3000
+```
+
 - - -
 
 #### Inspiration:
@@ -224,6 +238,9 @@ If you go to another route, the alerts should automatically be cleaned up. This 
 Thanks a lot for those who report bugs and request changes (especially [@dandv](https://github.com/dandv)). sAlert keeps getting better.
 
 #### Changelog
+
+#### v2.3.2, v2.3.3
+- Some tests added
 
 #### v2.3.1
 - Iron Router clear fix

@@ -48,7 +48,7 @@ var sAlertClose = function (alertId) {
 sAlert = {
     settings: {
         effect: '',
-        position: 'right-top',
+        position: 'top-right',
         timeout: 5000,
         html: false
     },

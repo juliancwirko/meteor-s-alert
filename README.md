@@ -217,8 +217,7 @@ If you go to another route, the alerts should automatically be cleaned up. This 
 
 #### Testing
 
-Run Meteor with:
-
+Clone it into `packages` folder and run meteor with:
 ```
 meteor test-packages --driver-package respondly:test-reporter juliancwirko:s-alert
 ```

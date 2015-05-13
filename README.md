@@ -2,6 +2,7 @@
 
 - Website: [http://s-alert.meteor.com/](http://s-alert.meteor.com/)
 - Demo: [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
+- [s-Alert on the Meteor Podcast](http://www.meteorpodcast.com/e/episode-60-the-club-edition/)
 
 **Note: Starting with version 2.0.0 you should also choose and add and effect package.**
 This is a more flexible and lean solution (previously, the effects CSS file contained all effect styles and it was heavy). sAlert will work without effects as well. You can add as many effect packages as you want. Config and usage are the same.

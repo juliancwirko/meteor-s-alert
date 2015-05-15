@@ -186,7 +186,7 @@ If you want to owerwrite it you should remember to be careful with all used help
     <div class="custom-alert-class s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}" style="{{boxPosition}}">
         <div class="s-alert-box-inner">
             <div class="alert-header">
-                <h1>{{sAlertTitle}}</h1>
+                <h1><i class="fa fa-{{sAlertIcon}}"></i> {{sAlertTitle}}</h1>
             </div>
             <div class="alert-content">
                 <i class="fa fa-fw fa-cog"></i>
@@ -207,7 +207,7 @@ Place `{{> sAlert template='sAlertCustom'}}` in your main template.
 As you can see in a custom `sAlertCustom` template we have used the `sAlertTitle` custom helper. Now if you want to pass the value to it you should call one of sAlert functions with the first parameter being an object instead of a message string:
 
 ```js
-sAlert.info({sAlertTitle: 'My custom sAlert field - the title', message: 'My sAlert message here'}, configOverwrite);
+sAlert.info({sAlertIcon: 'asterisk', sAlertTitle: 'My custom sAlert field - the title', message: 'My sAlert message here'}, configOverwrite);
 ```
 
 You can pass as many fields as you like. Remember to add the corresponding helpers in the template. `configOverwrite` works here the same as described above. It is of course optional.

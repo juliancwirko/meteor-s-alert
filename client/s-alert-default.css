@@ -1,5 +1,10 @@
 /* Common, default styles for the notification box */
 
+.s-alert-box,
+.s-alert-box * {
+	box-sizing: border-box;
+}
+
 .s-alert-box {
 	position: fixed;
 	background: rgba(42,45,50,0.85);

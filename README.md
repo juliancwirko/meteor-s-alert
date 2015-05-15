@@ -239,6 +239,9 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 
 #### Changelog
 
+#### v2.3.4
+- Some fixes related to template overwrite
+
 #### v2.3.2, v2.3.3
 - Some tests added
 
@@ -261,5 +264,5 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 - two new positions: 'top' and 'bottom', for full-width alerts; they work for all effects
 - timeout 'no' is now 'none' ('no' is deprecated and will work but will be removed in v3.0.0)
 
-####v2.0.0
+#### v2.0.0
 - factor out effects into separate packages

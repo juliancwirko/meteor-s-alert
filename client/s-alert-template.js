@@ -12,11 +12,17 @@ Template.sAlert.helpers({
         var sAlertBox;
         var docElement;
         var sAlertBoxHeight;
+        var currentData = Template.currentData();
+        var templateOverwrite = currentData && currentData.template;
         return sAlert.collection.find().map(function (alert) {
             // checking alert box height - needed to calculate position
             docElement = document.createElement('div');
             $(docElement).addClass('s-alert-box-height');
-            sAlertBoxHTML = Blaze.toHTMLWithData(Template.sAlertContent, alert);
+            if (_.isString(templateOverwrite)) {
+                sAlertBoxHTML = Blaze.toHTMLWithData(Template[templateOverwrite], alert);
+            } else {
+                sAlertBoxHTML = Blaze.toHTMLWithData(Template.sAlertContent, alert);
+            }
             sAlertBox = $(docElement).html(sAlertBoxHTML);
             $('body').append(sAlertBox);
             sAlertBoxHeight = sAlertBox.find('.s-alert-box').outerHeight(true);

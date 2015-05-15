@@ -170,7 +170,7 @@ If you want to have your effect package linked here just let me know.
 Here is a default template (it will be included when you use the standard `{{> sAlert}}`):
 
 ```handlebars
-<div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}">
+<div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}" style="{{boxPosition}}">
     <div class="s-alert-box-inner">
         <p>{{message}}</p>
     </div>
@@ -183,7 +183,7 @@ If you want to owerwrite it you should remember to be careful with all used help
 
 ```handlebars
 <template name="sAlertCustom">
-    <div class="custom-alert-class s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}">
+    <div class="custom-alert-class s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}" style="{{boxPosition}}">
         <div class="s-alert-box-inner">
             <div class="alert-header">
                 <h1>{{sAlertTitle}}</h1>

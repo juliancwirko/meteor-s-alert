@@ -42,7 +42,8 @@ Meteor.startup(function () {
         effect: '',
         position: 'top-right',
         timeout: 5000,
-        html: false
+        html: false,
+        onRouteClose: true
     });
 
 });
@@ -87,7 +88,7 @@ sAlert.close(warningThatWeWantToCloseLater);
 And what is `configOverwrite`? This is an object with all the settings you want to override, on a per-alert basis. For example:
 
 ```js
-sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'bottom-right', timeout: 'none'});
+sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'bottom-right', timeout: 'none', onRouteClose: false});
 ```
 
 This particular error will be displayed in different way.
@@ -214,7 +215,14 @@ You can pass as many fields as you like. Remember to add the corresponding helpe
 
 #### Using with routers:
 
-If you go to another route, the alerts should automatically be cleaned up. This works with Iron Router and FlowRouter.
+If you go to another route, in default the alerts should automatically be cleaned up. This works with Iron Router and FlowRouter. However if you want the alerts to persists on route change you should change `onRouteClose` param in your config (example above).
+
+You can even overwrite it in sAlert methods calls. So you can close only some of the alerts on route change. Example:
+
+```javascript
+sAlert.warning('Opssss!!! No good! Keep me even when the route changes.', {onRouteClose: false, timeout: 10000});
+sAlert.info('Be careful and hide me when the route changes.', {onRouteClose: true, timeout: 10000});
+```
 
 #### Testing
 
@@ -238,6 +246,9 @@ http://localhost:3000
 Thanks a lot for those who report bugs and request changes (especially [@dandv](https://github.com/dandv)). sAlert keeps getting better.
 
 #### Changelog
+
+#### v2.3.5
+- `onRouteClose` param - you can decide whether you want to close your alerts (or particular ones) when your route changes (default true)
 
 #### v2.3.4
 - Some fixes related to template overwrite

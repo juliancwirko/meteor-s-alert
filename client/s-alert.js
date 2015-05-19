@@ -50,7 +50,8 @@ sAlert = {
         effect: '',
         position: 'top-right',
         timeout: 5000,
-        html: false
+        html: false,
+        onRouteClose: true
     },
     config: function (configObj) {
         var self = this;
@@ -86,12 +87,12 @@ sAlert = {
 Meteor.startup(function () {
     if (typeof Iron !== 'undefined' && typeof Router !== 'undefined') {
         Router.onStop(function () {
-            sAlert.collection.remove({});
+            sAlert.collection.remove({onRouteClose: true});
         });
     }
     if (typeof FlowRouter !== 'undefined') {
         FlowRouter.middleware(function (path, next) {
-            sAlert.collection.remove({});
+            sAlert.collection.remove({onRouteClose: true});
             next();
         });
     }

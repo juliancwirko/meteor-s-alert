@@ -140,7 +140,7 @@ sAlert.info('Be careful and hide me when the route changes.', {onRouteClose: tru
 
 #### Stacking alerts
 
-By default your multiple alerts on the screen will appear one after another with shift on top or bottom.
+By default your multiple alerts on the screen will appear one after another with shift on top or bottom. You can disable it by stack param. Just set it to false.
 
 ```javascript
 sAlert.info('Opssss!!! I am full width alert without stacking enabled', {position: 'top'; stack: false});

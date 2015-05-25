@@ -19,7 +19,7 @@ var conditionSet = function (self, msg, condition, customSettings) {
     if (_.contains(effects, currentEffect) && !Package['juliancwirko:s-alert-' + currentEffect] && typeof console !== 'undefined') {
         console.info('Install "' + currentEffect + '" effect by running "meteor add juliancwirko:s-alert-' + currentEffect + '"');
     }
-    if (_.isObject(settings)) {
+    if (_.isObject(settings) && !_.isEmpty(settings)) {
         sAlertId = sAlert.collection.insert(settings);
     }
     return sAlertId;
@@ -51,7 +51,9 @@ sAlert = {
         position: 'top-right',
         timeout: 5000,
         html: false,
-        onRouteClose: true
+        onRouteClose: true,
+        stack: true,
+        offset: 0 // in px - will be added to first alert (bottom or top - depends of the position in config)
     },
     config: function (configObj) {
         var self = this;

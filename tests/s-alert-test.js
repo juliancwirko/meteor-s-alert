@@ -295,3 +295,80 @@ describe('sAlert position top', function () {
         Blaze.remove(renderedView);
     });
 });
+
+describe('sAlert offset', function () {
+    var renderedView;
+    var sAlertId;
+    before(function () {
+        sAlertId = sAlert.success('Test position...', {position: 'top', timeout: 'none', offset: '100px'});
+        renderedView = sAlertRender();
+    });
+    it('should have top offset set', function () {
+        chai.expect(getCSSProperty('.s-alert-box', 'top')).to.equal('100px');
+    });
+    it('should have document with offset in the collection', function () {
+        chai.expect(sAlert.collection.findOne(sAlertId).offset).to.equal('100px');
+    });
+    after(function () {
+        sAlert.closeAll();
+        Blaze.remove(renderedView);
+    });
+});
+
+describe('sAlert without stacking', function () {
+    var renderedView1;
+    var renderedView2;
+    var sAlertId1;
+    var sAlertId2;
+    var sa1;
+    var sa2;
+    before(function () {
+        sAlertId1 = sAlert.success('Test position...', {position: 'top', timeout: 'none', stack: false});
+        renderedView1 = sAlertRender();
+        sAlertId2 = sAlert.success('Test position...', {position: 'top', timeout: 'none', stack: false});
+        renderedView2 = sAlertRender();
+        sa1 = $('#' + sAlertId1).css('top');
+        sa2 = $('#' + sAlertId2).css('top');
+    });
+    it('should have equal position as the previous one', function () {
+        chai.expect(sa1).to.equal(sa2);
+    });
+    it('should have document with stack set to false in the collection', function () {
+        chai.expect(sAlert.collection.findOne(sAlertId1).stack).to.be.false;
+        chai.expect(sAlert.collection.findOne(sAlertId2).stack).to.be.false;
+    });
+    after(function () {
+        sAlert.closeAll();
+        Blaze.remove(renderedView1);
+        Blaze.remove(renderedView2);
+    });
+});
+
+describe('sAlert with stacking', function () {
+    var renderedView1;
+    var renderedView2;
+    var sAlertId1;
+    var sAlertId2;
+    var sa1;
+    var sa2;
+    before(function () {
+        sAlertId1 = sAlert.success('Test position...', {position: 'top', timeout: 'none', stack: true});
+        renderedView1 = sAlertRender();
+        sAlertId2 = sAlert.success('Test position...', {position: 'top', timeout: 'none', stack: true});
+        renderedView2 = sAlertRender();
+        sa1 = $('#' + sAlertId1).css('top');
+        sa2 = $('#' + sAlertId2).css('top');
+    });
+    it('should have not equal position as the previous one', function () {
+        chai.expect(sa1).to.not.equal(sa2);
+    });
+    it('should have document with stack set to true in the collection', function () {
+        chai.expect(sAlert.collection.findOne(sAlertId1).stack).to.be.true;
+        chai.expect(sAlert.collection.findOne(sAlertId2).stack).to.be.true;
+    });
+    after(function () {
+        sAlert.closeAll();
+        Blaze.remove(renderedView1);
+        Blaze.remove(renderedView2);
+    });
+});

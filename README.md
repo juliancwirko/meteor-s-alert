@@ -38,15 +38,19 @@ sAlert can optionally be configured on the client (more about possible configura
 ```js
 Meteor.startup(function () {
 
-    sAlert.config({
-        effect: '',
-        position: 'top-right',
-        timeout: 5000,
-        html: false,
-        onRouteClose: true,
-        stack: true,
-        offset: 0
-    });
+    if (Meteor.isClient) {
+    
+        sAlert.config({
+            effect: '',
+            position: 'top-right',
+            timeout: 5000,
+            html: false,
+            onRouteClose: true,
+            stack: true,
+            offset: 0
+        });
+        
+    }
 
 });
 ```

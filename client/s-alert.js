@@ -10,7 +10,7 @@ var conditionSet = function (self, msg, condition, customSettings) {
         customSettings = {};
     }
     if (_.isObject(msg) && _.isString(condition)) {
-        settings = _.extend(settings, self.settings, msg, {condition: condition}, customSettings);
+        settings = _.extend(settings, self.settings, {message: msg.message}, {condition: condition}, customSettings);
     }
     if (_.isString(msg) && _.isString(condition)) {
         settings = _.extend(settings, self.settings, {message: msg}, {condition: condition}, customSettings);
@@ -21,6 +21,7 @@ var conditionSet = function (self, msg, condition, customSettings) {
     }
     if (_.isObject(settings) && !_.isEmpty(settings)) {
         sAlertId = sAlert.collection.insert(settings);
+        if(_.isObject(msg)) sAlert.messageData[sAlertId] = msg;
     }
     return sAlertId;
 };
@@ -55,6 +56,7 @@ sAlert = {
         stack: true,
         offset: 0 // in px - will be added to first alert (bottom or top - depends of the position in config)
     },
+    messageData : {},
     config: function (configObj) {
         var self = this;
         if (_.isObject(configObj)) {

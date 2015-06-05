@@ -18,6 +18,9 @@ Template.sAlert.helpers({
         return sAlert.collection.find().map(function (alert, index) {
             positionTypeTop = alert.position && /top/g.test(alert.position);
             positionTypeBottom = alert.position && /bottom/g.test(alert.position);
+
+            if( sAlert.messageData[alert._id]) _.extend(alert,  sAlert.messageData[alert._id]);
+            
             if (alert.stack) {
                 // checking alert box height - needed to calculate position
                 docElement = document.createElement('div');

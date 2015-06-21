@@ -92,7 +92,12 @@ Meteor.startup(function () {
             sAlert.collection.remove({onRouteClose: true});
         });
     }
-    if (typeof FlowRouter !== 'undefined') {
+    if (typeof FlowRouter !== 'undefined' && _.isObject(FlowRouter.triggers)) {
+        FlowRouter.triggers.enter([function () {
+            sAlert.collection.remove({onRouteClose: true});
+        }]);
+    }
+    if (typeof FlowRouter !== 'undefined' && !_.isObject(FlowRouter.triggers)) {
         FlowRouter.middleware(function (path, next) {
             sAlert.collection.remove({onRouteClose: true});
             next();

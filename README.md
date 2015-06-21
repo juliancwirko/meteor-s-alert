@@ -265,6 +265,9 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 
 #### Changelog
 
+#### v2.4.1
+- Router clearing option - Flow Router new triggers API adjustments 
+
 #### v2.4.0
 - `stack` param - enable/disable stacking feature
 - `offset` param - top or bottom offset of the first alert on screen. In pixels. Default '0'

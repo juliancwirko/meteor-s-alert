@@ -302,3 +302,6 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 
 #### v2.0.0
 - factor out effects into separate packages
+
+#### License
+MIT

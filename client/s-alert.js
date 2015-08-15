@@ -10,7 +10,7 @@ var conditionSet = function (self, msg, condition, customSettings) {
         customSettings = {};
     }
     if (_.isObject(msg) && _.isString(condition)) {
-        settings = _.extend(settings, self.settings, msg, {condition: condition}, customSettings);
+        settings = _.extend(settings, self.settings, JSON.parse(JSON.stringify(msg)), {condition: condition}, customSettings);
     }
     if (_.isString(msg) && _.isString(condition)) {
         settings = _.extend(settings, self.settings, {message: msg}, {condition: condition}, customSettings);

@@ -265,8 +265,11 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 
 #### Changelog
 
+#### v2.4.2
+- Error object parse fix [#29](https://github.com/juliancwirko/meteor-s-alert/issues/29)
+
 #### v2.4.1
-- Router clearing option - Flow Router new triggers API adjustments 
+- Router clearing option - Flow Router new triggers API adjustments
 
 #### v2.4.0
 - `stack` param - enable/disable stacking feature

@@ -7,7 +7,7 @@
 **Note: Starting with version 2.0.0 you should also choose and add and effect package.**
 This is a more flexible and lean solution (previously, the effects CSS file contained all effect styles and it was heavy). sAlert will work without effects as well. You can add as many effect packages as you want. Config and usage are the same.
 
-### Usage
+### sAlert Usage
 
 Add package:
 
@@ -262,6 +262,13 @@ http://localhost:3000
 - [Codrops Article - Notification Styles Inspiration](http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/)
 
 Thanks a lot for those who report bugs and request changes (especially [@dandv](https://github.com/dandv)). sAlert keeps getting better.
+
+#### Also check out:
+
+- [sGrid](https://atmospherejs.com/juliancwirko/s-grid)
+- [sId](https://atmospherejs.com/juliancwirko/s-id)
+- [sImageBox](https://atmospherejs.com/juliancwirko/s-image-box)
+- [Scotty Boilerplate](https://github.com/juliancwirko/scotty)
 
 #### Changelog
 

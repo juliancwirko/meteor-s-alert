@@ -1,18 +1,17 @@
 Package.describe({
     'summary': 'Simple and fancy notifications / alerts / errors for Meteor',
-    'version': '2.4.2',
+    'version': '3.0.0',
     'git': 'https://github.com/juliancwirko/meteor-s-alert.git',
     'name': 'juliancwirko:s-alert'
 });
 
 Package.onUse(function (api) {
-
-    api.use('mongo@1.0.0');
-    api.use('templating@1.0.0');
-    api.use('ui@1.0.0');
-    api.use('underscore@1.0.0');
-    api.use(['jquery@1.0.0'], ['client']);
-
+    api.versionsFrom('METEOR@1.1.0.3');
+    api.use('mongo');
+    api.use('templating');
+    api.use('ui');
+    api.use('underscore');
+    api.use(['jquery'], ['client']);
     api.addFiles([
         'client/s-alert.js',
         'client/s-alert-collection.js',
@@ -20,16 +19,15 @@ Package.onUse(function (api) {
         'client/s-alert-template.html',
         'client/s-alert-template.js'
     ], 'client');
-
     api.export('sAlert', ['client']);
-
 });
 
 Package.onTest(function (api) {
+    api.versionsFrom('METEOR@1.1.0.3');
     api.use([
-        'jquery@1.0.0',
-        'templating@1.0.0',
-        'juliancwirko:s-alert@2.4.2',
+        'jquery',
+        'templating',
+        'juliancwirko:s-alert@3.0.0',
         'mike:mocha-package@0.5.8'
     ]);
     api.addFiles(['tests/s-alert-test.js'], 'client');

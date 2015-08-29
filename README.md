@@ -4,9 +4,6 @@
 - Demo: [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
 - [s-Alert on the Meteor Podcast](http://www.meteorpodcast.com/e/episode-60-the-club-edition/)
 
-**Note: Starting with version 2.0.0 you should also choose and add and effect package.**
-This is a more flexible and lean solution (previously, the effects CSS file contained all effect styles and it was heavy). sAlert will work without effects as well. You can add as many effect packages as you want. Config and usage are the same.
-
 ### sAlert Usage
 
 Add package:
@@ -45,7 +42,16 @@ Meteor.startup(function () {
         html: false,
         onRouteClose: true,
         stack: true,
-        offset: 0
+        offset: 0, // in px - will be added to first alert (bottom or top - depends of the position in config)
+        beep: false
+        // examples:
+        // beep: '/beep.mp3'  // or you can pass an object:
+        // beep: {
+        //     info: '/beep-info.mp3',
+        //     error: '/beep-error.mp3',
+        //     success: '/beep-success.mp3',
+        //     warning: '/beep-warning.mp3'
+        // }
     });
 
 });
@@ -155,6 +161,12 @@ If you want you can set up offset for your alerts. This is useful when you have 
 sAlert.info('Opssss!!! I am displayed below the header which is 70px height', {position: 'top'; offset: '100px'});
 ```
 You can also put it in the main sAlert config.
+
+#### Audio alerts
+
+You can set up your audio 'beeps'. Just configure your audio file path (.mp3 is prefered because it should work in every browser). You can also configure 4 paths for 4 conditions. The best way is to put your audio files in `public` folde. Check the configuration above for more details.
+
+**There is no default audio sample in the package.** You should use sound samples which you know that you have the right to use it.
 
 ### CSS styling
 
@@ -270,7 +282,16 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 - [sImageBox](https://atmospherejs.com/juliancwirko/s-image-box)
 - [Scotty Boilerplate](https://github.com/juliancwirko/scotty)
 
+**Note: Starting with version 3.0.0 old deprecated APIs are removed**
+
+**Note: Starting with version 2.0.0 you should also choose and add and effect package.**
+This is a more flexible and lean solution (previously, the effects CSS file contained all effect styles and it was heavy). sAlert will work without effects as well. You can add as many effect packages as you want. Config and usage are the same.
+
 #### Changelog
+
+#### v3.0.0
+- old API cleanup
+- Audio alerts
 
 #### v2.4.2
 - Error object parse fix [#29](https://github.com/juliancwirko/meteor-s-alert/issues/29)

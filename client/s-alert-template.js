@@ -69,6 +69,37 @@ Template.sAlertContent.onRendered(function () {
     var tmpl = this;
     var data = Template.currentData();
     var sAlertTimeout = data.timeout;
+    var beep = data.beep;
+    var audio;
+    var audioInfo;
+    var audioError;
+    var audioSuccess;
+    var audioWarning;
+    if (beep && _.isString(beep)) {
+        audio = new Audio(data.beep);
+        audio.load();
+        audio.play();
+    }
+    if (beep && _.isObject(beep) && data.condition === 'info') {
+        audioInfo = new Audio(data.beep.info);
+        audioInfo.load();
+        audioInfo.play();
+    }
+    if (beep && _.isObject(beep) && data.condition === 'error') {
+        audioError = new Audio(data.beep.error);
+        audioError.load();
+        audioError.play();
+    }
+    if (beep && _.isObject(beep) && data.condition === 'success') {
+        audioSuccess = new Audio(data.beep.success);
+        audioSuccess.load();
+        audioSuccess.play();
+    }
+    if (beep && _.isObject(beep) && data.condition === 'warning') {
+        audioWarning = new Audio(data.beep.warning);
+        audioWarning.load();
+        audioWarning.play();
+    }
     if (sAlertTimeout && sAlertTimeout !== 'no' && sAlertTimeout !== 'none') {
         sAlertTimeout = parseInt(sAlertTimeout);
         if (tmpl.sAlertCloseTimeout) {

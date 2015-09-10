@@ -1,6 +1,6 @@
 Package.describe({
     'summary': 'Simple and fancy notifications / alerts / errors for Meteor',
-    'version': '3.0.0',
+    'version': '3.1.0',
     'git': 'https://github.com/juliancwirko/meteor-s-alert.git',
     'name': 'juliancwirko:s-alert'
 });
@@ -27,7 +27,7 @@ Package.onTest(function (api) {
     api.use([
         'jquery',
         'templating',
-        'juliancwirko:s-alert@3.0.0',
+        'juliancwirko:s-alert@3.1.0',
         'mike:mocha-package@0.5.8'
     ]);
     api.addFiles(['tests/s-alert-test.js'], 'client');

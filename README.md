@@ -42,6 +42,11 @@ Meteor.startup(function () {
         html: false,
         onRouteClose: true,
         stack: true,
+        // or you can pass an object:
+        // stack: {
+        //     spacing: 10 // in px
+        //     limit: 3 // when fourth alert appears all previous ones are cleared
+        // }
         offset: 0, // in px - will be added to first alert (bottom or top - depends of the position in config)
         beep: false
         // examples:
@@ -152,6 +157,23 @@ By default your multiple alerts on the screen will appear one after another with
 sAlert.info('Opssss!!! I am full width alert without stacking enabled', {position: 'top'; stack: false});
 ```
 You can also put it in the main sAlert config.
+
+There is an option to set up alerts limit on page and spacing between them.
+Sometimes when you use long timeouts (or no timeouts) it is better to use configured limit. So when it will be reached all previous alerts will be cleared immediately.
+Instead of using `stack: true` you can pass an object like:
+
+```
+...
+stack: {
+    spacing: 10, // in px
+    limit: 3
+}
+...
+```
+
+See full config above.
+
+Remember that if you use `stack.spacing` configuration you probably might want to use offset too, because the first alert will always have 0px spacing from top or bottom. If you use only `stack: true` there will be standard 30px spacing between alerts.
 
 #### Alerts offset
 
@@ -288,6 +310,10 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 This is a more flexible and lean solution (previously, the effects CSS file contained all effect styles and it was heavy). sAlert will work without effects as well. You can add as many effect packages as you want. Config and usage are the same.
 
 #### Changelog
+
+#### v3.1.0
+- clear audio on close by hand [#25](https://github.com/juliancwirko/meteor-s-alert/issues/25)
+- stack up spacing & limit [#31](https://github.com/juliancwirko/meteor-s-alert/issues/31)
 
 #### v3.0.0
 - old API cleanup

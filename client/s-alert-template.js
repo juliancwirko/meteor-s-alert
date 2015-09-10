@@ -15,10 +15,26 @@ Template.sAlert.helpers({
         var templateOverwrite = currentData && currentData.template;
         var positionTypeTop;
         var positionTypeBottom;
+        var positionTypeLeft;
+        var positionTypeRight;
+        var stackLimit;
+        var alertsCount;
         return sAlert.collection.find().map(function (alert, index) {
             positionTypeTop = alert.position && /top/g.test(alert.position);
             positionTypeBottom = alert.position && /bottom/g.test(alert.position);
+            positionTypeRight = alert.position && /right/g.test(alert.position);
+            positionTypeLeft = alert.position && /left/g.test(alert.position);
             if (alert.stack) {
+                stackLimit = alert.stack && alert.stack.limit;
+                alertsCount = sAlert.collection.find().count();
+                // limit check
+                if (stackLimit && alertsCount > stackLimit) {
+                    sAlert.collection.find({}).forEach(function (a, i) {
+                        if (i < stackLimit) {
+                            sAlert.collection.remove(a._id);
+                        }
+                    });
+                }
                 // checking alert box height - needed to calculate position
                 docElement = document.createElement('div');
                 $(docElement).addClass('s-alert-box-height');
@@ -31,10 +47,12 @@ Template.sAlert.helpers({
                 $('body').append(sAlertBox);
                 sAlertBoxHeight = sAlertBox.find('.s-alert-box').outerHeight(true);
                 if (positionTypeTop) {
-                    padding = sAlertBox.find('.s-alert-box').css('top');
+                    padding = alert.stack.spacing || sAlertBox.find('.s-alert-box').css('top');
                     if (index === 0 && alert.offset) {
-                        positionTop = positionTop + parseInt(padding) + parseInt(alert.offset);
-                        positionTop = positionTop + parseInt(padding);
+                        positionTop = positionTop + parseInt(alert.offset);
+                    }
+                    if (index === 0 && alert.stack.spacing) {
+                        positionTop = positionTop;
                     } else {
                         positionTop = positionTop + parseInt(padding);
                     }
@@ -42,9 +60,12 @@ Template.sAlert.helpers({
                     positionTop = positionTop + sAlertBoxHeight;
                 }
                 if (positionTypeBottom) {
-                    padding = sAlertBox.find('.s-alert-box').css('bottom');
+                    padding = alert.stack.spacing || sAlertBox.find('.s-alert-box').css('bottom');
                     if (index === 0 && alert.offset) {
-                        positionBottom = positionBottom + parseInt(padding) + parseInt(alert.offset);
+                        positionBottom = positionBottom + parseInt(alert.offset);
+                    }
+                    if (index === 0 && alert.stack.spacing) {
+                        positionBottom = positionBottom;
                     } else {
                         positionBottom = positionBottom + parseInt(padding);
                     }
@@ -52,6 +73,12 @@ Template.sAlert.helpers({
                     positionBottom = positionBottom + sAlertBoxHeight;
                 }
                 sAlertBox.remove();
+                if (positionTypeLeft) {
+                    style = style + 'left: ' + (alert.stack.spacing || sAlertBox.find('.s-alert-box').css('left')) + 'px;';
+                }
+                if (positionTypeRight) {
+                    style = style + 'right: ' + (alert.stack.spacing || sAlertBox.find('.s-alert-box').css('right')) + 'px;';
+                }
                 alerts = _.extend(alert, {boxPosition: style});
             } else if (alert.offset && positionTypeTop) {
                 alerts = _.extend(alert, {boxPosition: 'top: ' + parseInt(alert.offset) + 'px;'});
@@ -70,37 +97,33 @@ Template.sAlertContent.onRendered(function () {
     var data = Template.currentData();
     var sAlertTimeout = data.timeout;
     var beep = data.beep;
-    var audio;
-    var audioInfo;
-    var audioError;
-    var audioSuccess;
-    var audioWarning;
+    // audio
     if (beep && _.isString(beep)) {
-        audio = new Audio(data.beep);
-        audio.load();
-        audio.play();
+        sAlert.audio = new Audio(data.beep);
+        sAlert.audio.load();
+        sAlert.audio.play();
     }
     if (beep && _.isObject(beep) && data.condition === 'info') {
-        audioInfo = new Audio(data.beep.info);
-        audioInfo.load();
-        audioInfo.play();
+        sAlert.audioInfo = new Audio(data.beep.info);
+        sAlert.audioInfo.load();
+        sAlert.audioInfo.play();
     }
     if (beep && _.isObject(beep) && data.condition === 'error') {
-        audioError = new Audio(data.beep.error);
-        audioError.load();
-        audioError.play();
+        sAlert.audioError = new Audio(data.beep.error);
+        sAlert.audioError.load();
+        sAlert.audioError.play();
     }
     if (beep && _.isObject(beep) && data.condition === 'success') {
-        audioSuccess = new Audio(data.beep.success);
-        audioSuccess.load();
-        audioSuccess.play();
+        sAlert.audioSuccess = new Audio(data.beep.success);
+        sAlert.audioSuccess.load();
+        sAlert.audioSuccess.play();
     }
     if (beep && _.isObject(beep) && data.condition === 'warning') {
-        audioWarning = new Audio(data.beep.warning);
-        audioWarning.load();
-        audioWarning.play();
+        sAlert.audioWarning = new Audio(data.beep.warning);
+        sAlert.audioWarning.load();
+        sAlert.audioWarning.play();
     }
-    if (sAlertTimeout && sAlertTimeout !== 'no' && sAlertTimeout !== 'none') {
+    if (sAlertTimeout && sAlertTimeout !== 'none') {
         sAlertTimeout = parseInt(sAlertTimeout);
         if (tmpl.sAlertCloseTimeout) {
             Meteor.clearTimeout(tmpl.sAlertCloseTimeout);

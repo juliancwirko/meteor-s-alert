@@ -29,11 +29,7 @@ Template.sAlert.helpers({
                 alertsCount = sAlert.collection.find().count();
                 // limit check
                 if (stackLimit && alertsCount > stackLimit) {
-                    sAlert.collection.find({}).forEach(function (a, i) {
-                        if (i < stackLimit) {
-                            sAlert.collection.remove(a._id);
-                        }
-                    });
+                    sAlert.close(sAlert.collection.findOne()._id);
                 }
                 // checking alert box height - needed to calculate position
                 docElement = document.createElement('div');

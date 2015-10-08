@@ -28,7 +28,7 @@ var conditionSet = function (self, msg, condition, customSettings) {
 var EVENTS = 'webkitAnimationEnd oAnimationEnd animationEnd msAnimationEnd animationend';
 var sAlertClose = function (alertId) {
     var closingTimeout;
-    if (document.hidden || document.webkitHidden || $('.s-alert-box').css('animationName') === 'none') {
+    if (document.hidden || document.webkitHidden || !$('#' + alertId).hasClass('s-alert-is-effect')) {
         sAlert.collection.remove(alertId);
     } else {
         $('.s-alert-box#' + alertId).removeClass('s-alert-show');

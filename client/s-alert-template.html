@@ -8,7 +8,7 @@
     {{#if ../template}}
         {{> Template.dynamic template=../template data=this}}
     {{else}}
-        <div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} {{#if effect}}s-alert-effect-{{effect}}{{/if}} s-alert-show" id="{{_id}}" style="{{boxPosition}}">
+        <div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} {{#if effect}}s-alert-is-effect s-alert-effect-{{effect}}{{/if}} s-alert-show" id="{{_id}}" style="{{boxPosition}}">
             <div class="s-alert-box-inner">
                 <p>{{#if isHtml}}{{{message}}}{{else}}{{message}}{{/if}}</p>
             </div>

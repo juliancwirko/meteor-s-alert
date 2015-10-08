@@ -3,6 +3,7 @@
 - Website: [http://s-alert.meteor.com/](http://s-alert.meteor.com/)
 - Demo: [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
 - [s-Alert on the Meteor Podcast](http://www.meteorpodcast.com/e/episode-60-the-club-edition/)
+- [How to use it with React](http://julian.io/how-to-use-the-meteor-salert-package-with-react/)
 
 ### sAlert Usage
 

@@ -31,7 +31,7 @@ Then place `{{> sAlert}}` in your main template. Recomended usage:
 
 #### sAlert configuration
 
-sAlert can be configured on the client (more about possible configuration options below). The defaults are below:
+sAlert can be configured on the client, be sure to put this inside the /client directory because running it on the server will cause it to crash (more about possible configuration options below). The defaults are below:
 
 ```js
 Meteor.startup(function () {

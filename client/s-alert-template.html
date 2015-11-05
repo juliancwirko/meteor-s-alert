@@ -1,5 +1,14 @@
 <template name="sAlert">
-    {{#each sAlertData}}
+    {{#each sAlertDataLeft}}
+        {{> sAlertContent}}
+    {{/each}}
+    {{#each sAlertDataRight}}
+        {{> sAlertContent}}
+    {{/each}}
+    {{#each sAlertDataFullTop}}
+        {{> sAlertContent}}
+    {{/each}}
+    {{#each sAlertDataFullBottom}}
         {{> sAlertContent}}
     {{/each}}
 </template>

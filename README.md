@@ -304,6 +304,7 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 - [sId](https://atmospherejs.com/juliancwirko/s-id)
 - [sImageBox](https://atmospherejs.com/juliancwirko/s-image-box)
 - [Scotty Boilerplate](https://github.com/juliancwirko/scotty)
+- [PostCSS for Meteor](https://atmospherejs.com/juliancwirko/postcss)
 
 **Note: Starting with version 3.0.0 old deprecated APIs are removed**
 

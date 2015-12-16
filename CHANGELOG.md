@@ -1,5 +1,8 @@
 ### Changelog
 
+#### v3.1.3
+- onClose callback added. Many thanks to [@szchenghuang](https://github.com/szchenghuang) [#44](https://github.com/juliancwirko/meteor-s-alert/pull/44)
+
 #### v3.1.2
 - separation of positions logic - there was a problems when you wanted use many alerts positions at the same time [#35](https://github.com/juliancwirko/meteor-s-alert/issues/35)
 

@@ -29,9 +29,16 @@ var EVENTS = 'webkitAnimationEnd oAnimationEnd animationEnd msAnimationEnd anima
 var sAlertClose = function (alertId) {
     var closingTimeout;
     var onClose;
+    var invokeOnCloseCb = function () {
+        // invoke onClose callback
+        if (onClose && _.isFunction(onClose)) {
+            onClose();
+        }
+    };
     if (document.hidden || document.webkitHidden || !$('#' + alertId).hasClass('s-alert-is-effect')) {
         onClose = sAlert.collection.findOne(alertId).onClose;
         sAlert.collection.remove(alertId);
+        invokeOnCloseCb();
     } else {
         $('.s-alert-box#' + alertId).removeClass('s-alert-show');
         closingTimeout = Meteor.setTimeout(function () {
@@ -43,6 +50,7 @@ var sAlertClose = function (alertId) {
             onClose = sAlert.collection.findOne(alertId).onClose;
             sAlert.collection.remove(alertId);
             Meteor.clearTimeout(closingTimeout);
+            invokeOnCloseCb();
         });
     }
     // stop audio when closing
@@ -51,11 +59,6 @@ var sAlertClose = function (alertId) {
     sAlert.audioError && sAlert.audioError.load();
     sAlert.audioSuccess && sAlert.audioSuccess.load();
     sAlert.audioWarning && sAlert.audioWarning.load();
-
-    // invoke onClose callback
-    if (onClose && _.isFunction(onClose)) {
-        onClose();
-    }
 };
 
 // sAlert object
@@ -92,7 +95,7 @@ sAlert = {
         }
     },
     closeAll: function () {
-        sAlert.collection.find({}).forEach(function (sAlertObj){
+        sAlert.collection.find({}).forEach(function (sAlertObj) {
             sAlert.collection.remove(sAlertObj._id);
             if (sAlertObj.onClose && _.isFunction(sAlertObj.onClose)) {
                 sAlertObj.onClose();

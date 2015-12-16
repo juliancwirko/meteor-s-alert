@@ -137,10 +137,31 @@ You can set up it in miliseconds or use the string `none`.
 
 #### Callback onClose:
 
-You can hook a callback when the alert closes.
+You can hook a callback to be invoked when the alert closes. This callback will be invoked when the default timeout closes the alert.
 
 ```js
 sAlert.success('Your message', {onClose: function() {console.log('closing alert...');}});
+```
+
+If `timeout` is set specifically, it respects the setting.
+
+```js
+sAlert.success('Your message', {timeout: 1000, onClose: function() {console.log('closing alert in 1000ms...');}});
+```
+
+The callback will also be invoked if you specifically close the alert.
+
+```js
+var sAlertId = sAlert.success('Your message', {onClose: function() {console.log('closing alert...');}});
+sAlert.close(sAlertId);
+```
+
+It applies for `closeAll` as well.
+
+```js
+sAlert.success('Your message one', {onClose: function() {console.log('closing alert one...');}});
+sAlert.success('Your message two', {onClose: function() {console.log('closing alert two...');}});
+sAlert.closeAll();
 ```
 
 #### HTML tags

@@ -49,7 +49,7 @@ Meteor.startup(function () {
         //     limit: 3 // when fourth alert appears all previous ones are cleared
         // }
         offset: 0, // in px - will be added to first alert (bottom or top - depends of the position in config)
-        beep: false
+        beep: false,
         // examples:
         // beep: '/beep.mp3'  // or you can pass an object:
         // beep: {
@@ -57,6 +57,11 @@ Meteor.startup(function () {
         //     error: '/beep-error.mp3',
         //     success: '/beep-success.mp3',
         //     warning: '/beep-warning.mp3'
+        // }
+        onClose: _.noop //
+        // examples:
+        // onClose: function() {
+        //     /* Code here will be executed once the alert closes. */
         // }
     });
 
@@ -129,6 +134,14 @@ This particular error will be displayed in different way.
 #### Timeout:
 
 You can set up it in miliseconds or use the string `none`.
+
+#### Callback onClose:
+
+You can hook a callback when the alert closes.
+
+```js
+sAlert.success('Your message', {onClose: function() {console.log('closing alert...');}});
+```
 
 #### HTML tags
 

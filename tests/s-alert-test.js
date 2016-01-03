@@ -372,3 +372,119 @@ describe('sAlert with stacking', function () {
         Blaze.remove(renderedView2);
     });
 });
+
+describe('sAlert callback onClose by close and closeAll functions', function () {
+    var renderedView1;
+    var renderedView2;
+    var renderedView3;
+    var sAlertId1;
+    var sAlertId2;
+    var sAlertId3;
+    var isClosed1;
+    var isClosed2;
+    var isClosed3;
+    before(function () {
+        sAlertId1 = sAlert.success('Test onClose callback...', {timeout: 'none', onClose: function() {isClosed1 = true;}});
+        renderedView1 = sAlertRender();
+        sAlertId2 = sAlert.success('Test onClose callback...', {timeout: 'none', onClose: function() {isClosed2 = true;}});
+        renderedView2 = sAlertRender();
+        sAlertId3 = sAlert.success('Test onClose callback...', {timeout: 'none', onClose: function() {isClosed3 = true;}});
+        renderedView3 = sAlertRender();
+    });
+    it('should get called when specifically closing the alert.', function () {
+        sAlert.close(sAlertId1);
+        chai.expect(isClosed1).to.be.true;
+        chai.expect(isClosed2).to.be.undefined;
+        chai.expect(isClosed3).to.be.undefined;
+    });
+    it('should get called when specifically closing all alerts..', function () {
+        sAlert.closeAll();
+        chai.expect(isClosed1).to.be.true;
+        chai.expect(isClosed2).to.be.true;
+        chai.expect(isClosed3).to.be.true;
+    });
+    after(function () {
+        sAlert.closeAll();
+        Blaze.remove(renderedView1);
+        Blaze.remove(renderedView2);
+        Blaze.remove(renderedView3);
+    });
+});
+
+describe('sAlert callback onClose without timeout param', function () {
+    var renderedView;
+    var sAlertId;
+    var isClosed;
+    before(function (done) {
+        this.timeout(sAlert.settings.timeout + 1000 );
+        sAlertId = sAlert.success('Test onClose callback...', {onClose: function() {isClosed = true; done();}});
+        renderedView = sAlertRender();
+    });
+    it('should get called when the default timeout closes the alert.', function (done) {
+        chai.expect(isClosed).to.be.true;
+        done();
+    });
+    after(function () {
+        sAlert.closeAll();
+        Blaze.remove(renderedView);
+    });
+});
+
+describe('sAlert onClose callback with timeout param', function () {
+    var renderedView;
+    var sAlertId;
+    var isClosed;
+    before(function () {
+        sAlertId = sAlert.success('Test onClose callback...', {timeout: 'none', onClose: function() {isClosed = true;}});
+        renderedView = sAlertRender();
+    });
+    it('should not get called with infinite timeout', function () {
+        chai.expect(isClosed).to.be.undefined;
+    });
+    after(function () {
+        sAlert.closeAll();
+        Blaze.remove(renderedView);
+    });
+});
+
+describe('sAlert onClose callback with 1000ms timeout param', function () {
+    var renderedView;
+    var sAlertId;
+    var isClosed;
+    before(function (done) {
+        sAlertId = sAlert.success('Test onClose callback...', {timeout: 1000, onClose: function() {isClosed = true;}});
+        renderedView = sAlertRender();
+        Meteor.setTimeout(function () {
+            done();
+        }, 1500);
+    });
+    it('should get called after 1000ms timeout', function (done) {
+        chai.expect(isClosed).to.be.true;
+        done();
+    });
+    after(function () {
+        sAlert.closeAll();
+        Blaze.remove(renderedView);
+    });
+});
+
+describe('sAlert onClose callback with 1800ms timeout param', function () {
+    var renderedView;
+    var sAlertId;
+    var isClosed;
+    before(function (done) {
+        sAlertId = sAlert.success('Test onClose callback...', {timeout: 1800, onClose: function() {isClosed = true;}});
+        renderedView = sAlertRender();
+        Meteor.setTimeout(function () {
+            done();
+        }, 1000);
+    });
+    it('should not get called before 1800ms timeout', function (done) {
+        chai.expect(isClosed).to.be.undefined;
+        done();
+    });
+    after(function () {
+        sAlert.closeAll();
+        Blaze.remove(renderedView);
+    });
+});

@@ -1,90 +1,115 @@
 'use strict';
 
-Template.sAlert.helpers({
-    sAlertData: function () {
-        var positionTop = 0;
-        var positionBottom = 0;
-        var padding = 0;
-        var alerts = {};
-        var style;
-        var sAlertBoxHTML;
-        var sAlertBox;
-        var docElement;
-        var sAlertBoxHeight;
-        var currentData = Template.currentData();
-        var templateOverwrite = currentData && currentData.template;
-        var positionTypeTop;
-        var positionTypeBottom;
-        var positionTypeLeft;
-        var positionTypeRight;
-        var stackLimit;
-        var alertsCount;
-        return sAlert.collection.find().map(function (alert, index) {
-            positionTypeTop = alert.position && /top/g.test(alert.position);
-            positionTypeBottom = alert.position && /bottom/g.test(alert.position);
-            positionTypeRight = alert.position && /right/g.test(alert.position);
-            positionTypeLeft = alert.position && /left/g.test(alert.position);
-            if (alert.stack) {
-                stackLimit = alert.stack && alert.stack.limit;
-                alertsCount = sAlert.collection.find().count();
-                // limit check
-                if (stackLimit && alertsCount > stackLimit) {
-                    sAlert.close(sAlert.collection.findOne()._id);
-                }
-                // checking alert box height - needed to calculate position
-                docElement = document.createElement('div');
-                $(docElement).addClass('s-alert-box-height');
-                if (_.isString(templateOverwrite)) {
-                    sAlertBoxHTML = Blaze.toHTMLWithData(Template[templateOverwrite], alert);
-                } else {
-                    sAlertBoxHTML = Blaze.toHTMLWithData(Template.sAlertContent, alert);
-                }
-                sAlertBox = $(docElement).html(sAlertBoxHTML);
-                $('body').append(sAlertBox);
-                sAlertBoxHeight = sAlertBox.find('.s-alert-box').outerHeight(true);
-                if (positionTypeTop) {
-                    padding = alert.stack.spacing || sAlertBox.find('.s-alert-box').css('top');
-                    if (index === 0 && alert.offset) {
-                        positionTop = positionTop + parseInt(alert.offset);
-                    }
-                    if (index === 0 && alert.stack.spacing) {
-                        positionTop = positionTop;
-                    } else {
-                        positionTop = positionTop + parseInt(padding);
-                    }
-                    style = 'top: ' + positionTop + 'px;';
-                    positionTop = positionTop + sAlertBoxHeight;
-                }
-                if (positionTypeBottom) {
-                    padding = alert.stack.spacing || sAlertBox.find('.s-alert-box').css('bottom');
-                    if (index === 0 && alert.offset) {
-                        positionBottom = positionBottom + parseInt(alert.offset);
-                    }
-                    if (index === 0 && alert.stack.spacing) {
-                        positionBottom = positionBottom;
-                    } else {
-                        positionBottom = positionBottom + parseInt(padding);
-                    }
-                    style = 'bottom: ' + positionBottom + 'px;';
-                    positionBottom = positionBottom + sAlertBoxHeight;
-                }
-                sAlertBox.remove();
-                if (positionTypeLeft) {
-                    style = style + 'left: ' + (alert.stack.spacing || sAlertBox.find('.s-alert-box').css('left')) + 'px;';
-                }
-                if (positionTypeRight) {
-                    style = style + 'right: ' + (alert.stack.spacing || sAlertBox.find('.s-alert-box').css('right')) + 'px;';
-                }
-                alerts = _.extend(alert, {boxPosition: style});
-            } else if (alert.offset && positionTypeTop) {
-                alerts = _.extend(alert, {boxPosition: 'top: ' + parseInt(alert.offset) + 'px;'});
-            } else if (alert.offset && positionTypeBottom) {
-                alerts = _.extend(alert, {boxPosition: 'bottom: ' + parseInt(alert.offset) + 'px;'});
-            } else {
-                alerts = alert;
-            }
-            return alerts;
+var getAlertData = function (currentData, sAlertPosition) {
+    var positionTop = 0;
+    var positionBottom = 0;
+    var padding = 0;
+    var alerts = {};
+    var style;
+    var sAlertBoxHTML;
+    var sAlertBox;
+    var docElement;
+    var sAlertBoxHeight;
+    var templateOverwrite = currentData && currentData.template;
+    var positionTypeTop;
+    var positionTypeBottom;
+    var stackLimit;
+    var alertsCount;
+    var checkFirst = function (type, objId) {
+        var collectionOfType = sAlertCollection.filter(function(obj) {
+            return obj.position === type;
         });
+        return collectionOfType && collectionOfType[0]._id === objId;
+    };
+    var positionFunc = function (position, positionType, alert, sAlertBox) {
+        padding = alert.stack.spacing || sAlertBox.find('.s-alert-box').css(positionType);
+        if (checkFirst(alert.position, alert._id) && alert.offset) {
+            position = 0;
+            position = position + parseInt(alert.offset);
+        }
+        if (checkFirst(alert.position, alert._id) && alert.stack.spacing) {
+            position = position;
+        } else {
+            position = position + parseInt(padding);
+        }
+        style = positionType + ': ' + position + 'px;';
+        position = position + sAlertBoxHeight;
+        return position;
+    };
+
+    var query = {};
+    if (sAlertPosition === 'left') {
+        query = {$or: [{position: 'top-left'}, {position: 'bottom-left'}]};
+    }
+    if (sAlertPosition === 'right') {
+        query = {$or: [{position: 'top-right'}, {position: 'bottom-right'}]};
+    }
+    if (sAlertPosition === 'full-top') {
+        query = {position: 'top'};
+    }
+    if (sAlertPosition === 'full-bottom') {
+        query = {position: 'bottom'};
+    }
+    var sAlertCollection = sAlert.collection.find(query).fetch();
+
+    return sAlertCollection.map(function (alert) {
+        positionTypeTop = alert.position && /top/g.test(alert.position);
+        positionTypeBottom = alert.position && /bottom/g.test(alert.position);
+        if (alert.stack) {
+            stackLimit = alert.stack && alert.stack.limit;
+            alertsCount = sAlert.collection.find(query).count();
+            // limit check
+            if (stackLimit && alertsCount > stackLimit) {
+                sAlert.close(sAlert.collection.findOne(query)._id);
+            }
+            // checking alert box height - needed to calculate position
+            docElement = document.createElement('div');
+            $(docElement).addClass('s-alert-box-height');
+            if (_.isString(templateOverwrite)) {
+                sAlertBoxHTML = Blaze.toHTMLWithData(Template[templateOverwrite], alert);
+            } else {
+                sAlertBoxHTML = Blaze.toHTMLWithData(Template.sAlertContent, alert);
+            }
+            sAlertBox = $(docElement).html(sAlertBoxHTML);
+            $('body').append(sAlertBox);
+            sAlertBoxHeight = sAlertBox.find('.s-alert-box').outerHeight(true);
+            if (positionTypeTop) {
+                positionTop = positionFunc(positionTop, 'top', alert, sAlertBox);
+            }
+            if (positionTypeBottom) {
+                positionBottom = positionFunc(positionBottom, 'bottom', alert, sAlertBox);
+            }
+            sAlertBox.remove();
+            if (sAlertPosition === 'left') {
+                style = style + 'left: ' + (alert.stack.spacing || sAlertBox.find('.s-alert-box').css('left')) + 'px;';
+            }
+            if (sAlertPosition === 'right') {
+                style = style + 'right: ' + (alert.stack.spacing || sAlertBox.find('.s-alert-box').css('right')) + 'px;';
+            }
+            alerts = _.extend(alert, {boxPosition: style});
+        } else if (alert.offset && positionTypeTop) {
+            alerts = _.extend(alert, {boxPosition: 'top: ' + parseInt(alert.offset) + 'px;'});
+        } else if (alert.offset && positionTypeBottom) {
+            alerts = _.extend(alert, {boxPosition: 'bottom: ' + parseInt(alert.offset) + 'px;'});
+        } else {
+            alerts = alert;
+        }
+        return alerts;
+    });
+};
+
+Template.sAlert.helpers({
+    sAlertDataLeft: function () {
+        return getAlertData(Template.currentData(), 'left');
+    },
+    sAlertDataRight: function () {
+        return getAlertData(Template.currentData(), 'right');
+    },
+    sAlertDataFullTop: function () {
+        return getAlertData(Template.currentData(), 'full-top');
+    },
+    sAlertDataFullBottom: function () {
+        return getAlertData(Template.currentData(), 'full-bottom');
     }
 });
 

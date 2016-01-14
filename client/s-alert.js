@@ -29,6 +29,7 @@ var EVENTS = 'webkitAnimationEnd oAnimationEnd animationEnd msAnimationEnd anima
 var sAlertClose = function (alertId) {
     var closingTimeout;
     var onClose;
+    var alertObj;
     var invokeOnCloseCb = function () {
         // invoke onClose callback
         if (onClose && _.isFunction(onClose)) {
@@ -36,7 +37,10 @@ var sAlertClose = function (alertId) {
         }
     };
     if (document.hidden || document.webkitHidden || !$('#' + alertId).hasClass('s-alert-is-effect')) {
-        onClose = sAlert.collection.findOne(alertId).onClose;
+        alertObj = sAlert.collection.findOne(alertId);
+        if (alertObj && !_.isEmpty(alertObj)) {
+            onClose = alertObj.onClose;
+        }
         sAlert.collection.remove(alertId);
         invokeOnCloseCb();
     } else {
@@ -47,7 +51,10 @@ var sAlertClose = function (alertId) {
         $('.s-alert-box#' + alertId).off(EVENTS);
         $('.s-alert-box#' + alertId).on(EVENTS, function () {
             $(this).hide();
-            onClose = sAlert.collection.findOne(alertId).onClose;
+            alertObj = sAlert.collection.findOne(alertId);
+            if (alertObj && !_.isEmpty(alertObj)) {
+                onClose = alertObj.onClose;
+            }
             sAlert.collection.remove(alertId);
             Meteor.clearTimeout(closingTimeout);
             invokeOnCloseCb();

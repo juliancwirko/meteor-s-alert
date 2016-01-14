@@ -1,4 +1,6 @@
 ### Changelog
+#### v3.1.4
+- small fix - data check added [#46](https://github.com/juliancwirko/meteor-s-alert/issues/46)
 
 #### v3.1.3
 - onClose callback added. Many thanks to [@szchenghuang](https://github.com/szchenghuang) [#44](https://github.com/juliancwirko/meteor-s-alert/pull/44)

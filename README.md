@@ -3,7 +3,7 @@
 - Website: [http://s-alert.meteor.com/](http://s-alert.meteor.com/)
 - Demo: [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
 - [s-Alert on the Meteor Podcast](http://www.meteorpodcast.com/e/episode-60-the-club-edition/)
-- [Native React Component](https://www.npmjs.com/package/react-s-alert)
+- [Pure React UI Component](https://www.npmjs.com/package/react-s-alert)
 
 ### sAlert Usage
 

@@ -1,7 +1,7 @@
 ### Simple and fancy notifications for Meteor
 
-- Website: [http://s-alert.meteor.com/](http://s-alert.meteor.com/)
-- Demo: [http://s-alert-demo.meteor.com/](http://s-alert-demo.meteor.com/)
+- Website: [http://s-alert.meteorapp.com/](http://s-alert.meteorapp.com/)
+- Demo: [http://s-alert-demo.meteorapp.com/](http://s-alert-demo.meteorapp.com/)
 - [s-Alert on the Meteor Podcast](http://www.meteorpodcast.com/e/episode-60-the-club-edition/)
 - [Pure React UI Component](https://www.npmjs.com/package/react-s-alert)
 

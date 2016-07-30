@@ -11,7 +11,7 @@ Package.onUse(function (api) {
     api.use('templating');
     api.use('ui');
     api.use('underscore');
-    api.use(['jquery'], ['client']);
+    api.use(['jquery', 'session'], ['client']);
     api.addFiles([
         'client/s-alert.js',
         'client/s-alert-collection.js',

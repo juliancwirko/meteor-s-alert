@@ -1,4 +1,7 @@
 ### Changelog
+#### v3.2.0
+- ready for Meteor 1.4 [#56](https://github.com/juliancwirko/meteor-s-alert/pull/56)
+
 #### v3.1.4
 - small fix - data check added [#46](https://github.com/juliancwirko/meteor-s-alert/issues/46)
 

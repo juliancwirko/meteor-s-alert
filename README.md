@@ -315,7 +315,7 @@ You can pass as many fields as you like. Remember to add the corresponding helpe
 
 Clone it into `packages` folder and run meteor with:
 ```
-meteor test-packages --driver-package respondly:test-reporter juliancwirko:s-alert
+meteor test-packages --driver-package practicalmeteor:mocha juliancwirko:s-alert
 ```
 
 and go to:
@@ -334,6 +334,8 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 
 #### Also check out:
 
+- [React with Webpack + Meteor as a backend only](http://julian.io/react-with-webpack-meteor-as-a-backend/)
+- [s-alert for React](https://www.npmjs.com/package/react-s-alert)
 - [sGrid](https://atmospherejs.com/juliancwirko/s-grid)
 - [sId](https://atmospherejs.com/juliancwirko/s-id)
 - [sImageBox](https://atmospherejs.com/juliancwirko/s-image-box)

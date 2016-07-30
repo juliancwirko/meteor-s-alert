@@ -27,8 +27,9 @@ Package.onTest(function (api) {
     api.use(['jquery'], ['client']);
     api.use([
         'templating',
-        'juliancwirko:s-alert@3.1.4',
-        'mike:mocha-package@0.5.9'
+        'juliancwirko:s-alert@3.2.0',
+        'practicalmeteor:mocha@2.4.5_6',
+        'practicalmeteor:chai@2.1.0_1'
     ]);
     api.addFiles(['tests/s-alert-test.js'], 'client');
 });

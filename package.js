@@ -1,6 +1,6 @@
 Package.describe({
     'summary': 'Simple and fancy notifications / alerts / errors for Meteor',
-    'version': '3.1.4',
+    'version': '3.2.0',
     'git': 'https://github.com/juliancwirko/meteor-s-alert.git',
     'name': 'juliancwirko:s-alert'
 });

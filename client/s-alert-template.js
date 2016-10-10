@@ -65,6 +65,7 @@ var getAlertData = function (currentData, sAlertPosition) {
             // checking alert box height - needed to calculate position
             docElement = document.createElement('div');
             $(docElement).addClass('s-alert-box-height');
+            alert.level = alert.condition;
             if (_.isString(templateOverwrite)) {
                 sAlertBoxHTML = Blaze.toHTMLWithData(Template[templateOverwrite], alert);
             } else {
